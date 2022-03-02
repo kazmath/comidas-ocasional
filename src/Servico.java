@@ -6,7 +6,7 @@ public class Servico {
     }
     Cliente cliente;
     Estabelecimento estabelecimento;
-    Pagamento metodo;
+    Pagamento pagamento;
     boolean retirada;
 
     public Servico(
@@ -17,7 +17,7 @@ public class Servico {
     ) {
         this.cliente = cliente;
         this.estabelecimento = estabelecimento;
-        this.metodo = pagamento;
+        this.pagamento = pagamento;
         this.retirada = retirada;
     }
 }

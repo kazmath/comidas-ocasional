@@ -1,18 +1,12 @@
 public class Cliente {
-    String nome;
-    String numero;
-    String cpf;
+    Cadastro cadastro;
     Endereco endereco;
 
     public Cliente(
-        String nome,
-        String numero,
-        String cpf,
+        Cadastro cadastro,
         Endereco endereco
     ) {
-        this.nome = nome;
-        this.numero = numero;
-        this.cpf = cpf;
+        this.cadastro = cadastro;
         this.endereco = endereco;
     }
 }
