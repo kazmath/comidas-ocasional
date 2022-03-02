@@ -4,9 +4,9 @@ public class Login {
     String email;
     String senha;
 
-    public void login(String email, String senha){
-        email;
-        senha;
+    public Login(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
     }
 
     public String getEmail() {
