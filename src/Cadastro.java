@@ -1,10 +1,17 @@
-package io.github.jiangdequan;
-
-public class Login {
+public class Cadastro {
+    String nome;
+    String cpf;
     String email;
     String senha;
 
-    public Login(String email, String senha) {
+    public Cadastro(
+        String nome,
+        String cpf,
+        String email,
+        String senha
+    ) {
+        this.nome = nome;
+        this.cpf = cpf;
         this.email = email;
         this.senha = senha;
     }
@@ -17,11 +24,7 @@ public class Login {
         this.email = email;
     }
 
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public void setSenha(String senha) {
+    public void changeSenha(String senha) {
         this.senha = senha;
     }
     

@@ -5,8 +5,18 @@ public class Endereco {
     private String Cidade;
     private String CEP;
     
-    public Endereco(String Rua, String numCasa, String Bairro, String Cidade, String CEP) {
-        // TODO: fazer construtor
+    public Endereco(
+        String Rua,
+        String numCasa,
+        String Bairro,
+        String Cidade,
+        String CEP
+    ) {
+        this.Rua = Rua;
+        this.numCasa = numCasa;
+        this.Bairro = Bairro;
+        this.Cidade = Cidade;
+        this.CEP = CEP;
     }
 
     public String getRua(){

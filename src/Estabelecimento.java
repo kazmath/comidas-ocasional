@@ -1,7 +1,20 @@
-import Hashmap;
+import java.util.HashMap;
 
 public class Estabelecimento {
-    Hashmap<String,int> menu = new Hashmap<String,int>();
-    float[] horario = {};
-    Endereco endereco = new Endereco(...);
+    String cnpj;
+    float[] horarios;
+    Endereco endereco;
+    HashMap<String,Integer> menu;
+
+    public Estabelecimento(
+        String cnpj,
+        float[] horarios,
+        Endereco endereco,
+        HashMap<String,Integer> menu
+    ) {
+        this.cnpj = cnpj;
+        this.horarios = horarios;
+        this.endereco = endereco;
+        this.menu = menu;
+    }
 }
