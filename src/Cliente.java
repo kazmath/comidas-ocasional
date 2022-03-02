@@ -3,5 +3,6 @@ public class Cliente {
     String nome;
     String numero;
     String email;
+    String cpf;
     Pagamento[] pagamento;
 }
