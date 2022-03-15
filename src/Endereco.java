@@ -3,20 +3,17 @@ public class Endereco {
     private String numCasa;
     private String Bairro;
     private String Cidade;
-    private String CEP;
     
     public Endereco(
         String Rua,
         String numCasa,
         String Bairro,
-        String Cidade,
-        String CEP
+        String Cidade
     ) {
         this.Rua = Rua;
         this.numCasa = numCasa;
         this.Bairro = Bairro;
         this.Cidade = Cidade;
-        this.CEP = CEP;
     }
 
     public String getRua(){
@@ -51,11 +48,4 @@ public class Endereco {
         this.Cidade = newCidade;
     }
 
-    public String getCEP(){
-        return CEP;
-    }
-
-    public void setCEP(String newCEP){
-        this.CEP = newCEP;
-    }
 }
