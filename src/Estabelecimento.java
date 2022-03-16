@@ -1,5 +1,5 @@
 import java.util.HashMap;
-import java.util.Calendar; //TODO: Aprender como a biblioteca calendar.
+import java.util.Calendar; //TODO: Aprender como a biblioteca calendar
 
 public class Estabelecimento {
     String cnpj;
