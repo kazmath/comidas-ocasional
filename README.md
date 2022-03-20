@@ -1,1 +1,3 @@
-# comidas-ocasional
+# Comidas Ocasional
+
+* O estabelecimento deve estar funcionando.
