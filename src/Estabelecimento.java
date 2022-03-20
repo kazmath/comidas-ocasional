@@ -1,9 +1,10 @@
 import java.util.HashMap;
-import java.util.Calendar; //TODO: Aprender como a biblioteca calendar
+import java.util.Calendar;
 
 public class Estabelecimento {
     String cnpj;
-    int[][] horarios;
+    Calendar abertura;
+    Calendar fechamento;
     Endereco endereco;
     HashMap<String,Integer> menu;
     String nome;
@@ -11,13 +12,15 @@ public class Estabelecimento {
     public Estabelecimento(
         String nome,
         String cnpj,
-        int[][] horarios,
+        Calendar abertura,
+        Calendar fechamento,
         Endereco endereco,
         HashMap<String,Integer> menu
     ) {
         this.nome = nome;
         this.cnpj = cnpj;
-        this.horarios = horarios;
+        this.abertura = abertura;
+        this.fechamento = fechamento;
         this.endereco = endereco;
         this.menu = menu;
     }
