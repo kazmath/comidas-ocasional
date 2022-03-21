@@ -13,8 +13,9 @@ public class Main {
         int minAtual = hoje.get(Calendar.MINUTE);
         int tempAtual = minAtual + (horaAtual * 60);
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        boolean controlador = true;
 
-        while (true) {
+        while (controlador) {
             System.out.println("Bem-Vindo ao Comidas Ocasionais");
             System.out.println("""
                     =========================================
@@ -29,9 +30,14 @@ public class Main {
             switch (escolha) {
                 case 1: // TODO editar quando tiver com o banco de dados.
                     System.out.print("digite seu login: ");
-                    scan.next();
+                    String entradalogin = scan.next();
                     System.out.print("digite sua senha: ");
-                    scan.next();
+                    String entradasenha = scan.next();
+                   
+                    for (Cliente cliente : clientes) {
+                        
+                        
+                    }
 
                     break;
                 case 2:
