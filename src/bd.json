@@ -1,10 +1,8 @@
 [
-	{
-		"login":"daniel",
-		"senha":"morena"
-	},
-	{
-		"login":"matheus",
-		"senha":"anime"
-	}
+	[
+		"daniel","matheus"
+	],
+	[
+		"morena","anime"
+	]
 ]
