@@ -29,15 +29,14 @@ public class Main {
             escolha = scan.nextInt();
 
             switch (escolha) {
-                case 1: //TODO: Matheus
+                case 1: // TODO: Matheus
                     System.out.print("digite seu login: ");
                     String entradalogin = scan.next();
                     System.out.print("digite sua senha: ");
                     String entradasenha = scan.next();
-                   
+
                     for (Cliente cliente : clientes) {
-                        
-                        
+
                     }
 
                     break;
@@ -56,20 +55,22 @@ public class Main {
                     String cnpj = scan.next();
                     System.out.print("Insira os horarios de funcionamento: ");
                     /**
-                     * int abertura = getTempoAbertura()
-                     * int fechamento = getTempoFechamento()
                      * HashMap<String,Integer> menu = getMenu()
                      */
-                    getTempo();
+                    getTempoAbertura();
+                    getTempoFechamento();
+                    int abertura = getTempoAbertura();
+                    int fechamento = getTempoFechamento();
+
                     System.out.print("Insira seu endereço: ");
                     Endereco enderecoComp = getEndereco();
 
                     Estabelecimento estabelecimento = new Estabelecimento(
-                        nome,
-                        cnpj,
-                        abertura, //TODO: getTempoAbertura()
-                        fechamento, //TODO: getTempoFechamento()
-                        menu //TODO: getMenu()
+                            nome,
+                            cnpj,
+                            abertura, // TODO: getTempoAbertura()
+                            fechamento, // TODO: getTempoFechamento()
+                            menu // TODO: getMenu()
                     );
                     estabelecimento.addEndereco(enderecoComp);
                     estabelecimentos.add(estabelecimento);
@@ -120,11 +121,10 @@ public class Main {
         return new Endereco(Rua, numCasa, Bairro, Cidade);
     }
 
-    private static void getTempo() {
+    private static int getTempoAbertura() {
         int horaAbertura;
         int minAbertura;
-        int horaFechamento;
-        int minFechamento;
+        int abertura;
 
         do {
             System.out.println(
@@ -138,6 +138,16 @@ public class Main {
             minAbertura = scan.nextInt();
         } while (minAbertura < 0 && minAbertura > 59);
 
+        abertura = minAbertura + (horaAbertura * 60);
+
+        return abertura;
+    }
+
+    private static int getTempoFechamento() {
+        int horaFechamento;
+        int minFechamento;
+        int fechamento;
+
         do {
             System.out.println(
                     "Digite a HORA de fechamento do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
@@ -149,6 +159,10 @@ public class Main {
                     "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
             minFechamento = scan.nextInt();
         } while (minFechamento < 0 && minFechamento > 59);
+
+        fechamento = minFechamento + (horaFechamento * 60);
+
+        return fechamento;
     }
 
 }
