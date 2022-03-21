@@ -45,6 +45,7 @@ public class Main {
                     Endereco enderecoComp = getEndereco();
 
                     //TODO: Usar o construtor da classe Estabelecimento
+                    //TODO: Transformar em um método
 
                     break;
             
