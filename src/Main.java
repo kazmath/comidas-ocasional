@@ -68,8 +68,8 @@ public class Main {
                     Estabelecimento estabelecimento = new Estabelecimento(
                             nome,
                             cnpj,
-                            abertura, // TODO: getTempoAbertura()
-                            fechamento, // TODO: getTempoFechamento()
+                            abertura,
+                            fechamento,
                             menu // TODO: getMenu()
                     );
                     estabelecimento.addEndereco(enderecoComp);
