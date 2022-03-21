@@ -4,9 +4,10 @@ import java.util.Scanner;
 public class Main {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
     static Scanner scan = new Scanner(System.in);
+    
     public static void main (String[] args) {
         int escolha;
-
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
         while (true) {
             System.out.println("Bem-Vindo ao Comidas Ocasionais");
@@ -17,21 +18,22 @@ public class Main {
             3-Cadastro de Restaurante
             =========================================
             """);
-            System.out.println("Escolha as opçoes:");
+            System.out.println("Escolha as opções:");
             escolha = scan.nextInt();
     
             switch (escolha) {
                 case 1: //TODO editar quando tiver com o banco de dados.
-                System.out.print("digite seu login: ");
-                scan.next();
-                System.out.print("digite sua senha: ");
-                scan.next();
+                    System.out.print("digite seu login: ");
+                    scan.next();
+                    System.out.print("digite sua senha: ");
+                    scan.next();
                     
                     break;
                 case 2:
                     Endereco enderecoUser = getEndereco();
                     Cadastro cadastro = getCadastro();
                     Cliente cliente = new Cliente(cadastro, enderecoUser);
+                    clientes.add(cliente);
                     System.out.println("Cadastro realizado com sucesso!\n\n");
                     break;
                 case 3:
@@ -62,7 +64,7 @@ public class Main {
     private static Cadastro getCadastro() {
         System.out.println("Digite as inforações");
         System.out.print("nome: ");
-        String nome = scan.next();
+        String login = scan.next();
         
         System.out.print("CPF: ");
         String cpf = scan.next();
@@ -73,7 +75,7 @@ public class Main {
         System.out.print("senha: ");
         String senha = scan.next();
     
-        return new Cadastro(nome, cpf, email, senha);
+        return new Cadastro(login, cpf, email, senha);
     }
 
     private static Endereco getEndereco() {

@@ -1,16 +1,16 @@
 public class Cadastro {
-    String nome;
+    String login;
     String cpf;
     String email;
     String senha;
 
     public Cadastro(
-        String nome,
+        String login,
         String cpf,
         String email,
         String senha
     ) {
-        this.nome = nome;
+        this.login = login;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
