@@ -1,12 +1,11 @@
-public class Cliente {
-    Cadastro cadastro;
-    Endereco endereco;
+import java.util.ArrayList;
 
-    public Cliente(
-            Cadastro cadastro,
-            Endereco endereco) {
+public class Cliente implements IEndereco {
+    Cadastro cadastro;
+    ArrayList<Endereco> enderecos;
+
+    public Cliente (Cadastro cadastro) {
         this.cadastro = cadastro;
-        this.endereco = endereco;
     }
 
     public Cadastro getCadastro() {
@@ -17,12 +16,21 @@ public class Cliente {
         this.cadastro = cadastro;
     }
 
-    public Endereco getEndereco() {
-        return this.endereco;
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public Endereco getEndereco(int index) {
+        return this.enderecos.get(index);
     }
+
+    public void setEndereco(int index, Endereco endereco) {
+        this.enderecos.set(index, endereco);
+    }
+
+    public void deleteEndereco(int index) {
+        this.enderecos.remove(index);
+    }
+
 
 }

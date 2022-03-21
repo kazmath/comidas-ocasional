@@ -41,9 +41,10 @@ public class Main {
 
                     break;
                 case 2:
-                    Endereco enderecoUser = getEndereco();
                     Cadastro cadastro = getCadastro();
-                    Cliente cliente = new Cliente(cadastro, enderecoUser);
+                    Endereco enderecoUser = getEndereco();
+                    Cliente cliente = new Cliente(cadastro);
+                    cliente.addEndereco(enderecoUser);
                     clientes.add(cliente);
                     System.out.println("Cadastro realizado com sucesso!\n\n");
                     break;

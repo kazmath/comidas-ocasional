@@ -1,11 +1,12 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Estabelecimento {
+public class Estabelecimento implements IEndereco {
     String cnpj;
     Calendar abertura;
     Calendar fechamento;
-    Endereco endereco;
+    ArrayList<Endereco> enderecos;
     HashMap<String, Integer> menu;
     String nome;
 
@@ -20,7 +21,6 @@ public class Estabelecimento {
         this.cnpj = cnpj;
         this.abertura = abertura;
         this.fechamento = fechamento;
-        this.endereco = endereco;
         this.menu = menu;
     }
 
@@ -48,12 +48,20 @@ public class Estabelecimento {
         this.fechamento = fechamento;
     }
 
-    public Endereco getEndereco() {
-        return this.endereco;
+    public Endereco getEndereco(int index) {
+        return this.enderecos.get(index);
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEndereco(int index, Endereco endereco) {
+        this.enderecos.set(index, endereco);
+    }
+
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
+
+    public void deleteEndereco(int index) {
+        this.enderecos.remove(index);
     }
 
     public HashMap<String, Integer> getMenu() {
@@ -71,4 +79,5 @@ public class Estabelecimento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

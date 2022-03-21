@@ -1,9 +1,9 @@
 public interface IEndereco {
-    public void addEndereco();
+    public void addEndereco(Endereco endereco);
 
-    public void getEndereco();
+    public Endereco getEndereco(int index);
 
-    public void setEndereco(Endereco endereco);
+    public void setEndereco(int index, Endereco endereco);
 
-    public void deleteEndereco();
+    public void deleteEndereco(int index);
 }
