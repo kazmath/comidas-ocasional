@@ -9,4 +9,10 @@
 * [ ] Se a forma de pagamento selecionada for dinheiro ou cartao deve ser pago na hora quando a entrega chegar ao cliente ou na hora da retirada.
 * [ ] Se a forma de pagamento for diferente de dinheiro ou cartao deve ser feita pelo aplicativo.
 
+# Informações sobre o projeto:
+
+- Disciplina: Programação II
+- Alunos: Daniel Figueiroa, Gerson Felisberto, Matheus Henrique, Juarez José
+- Professor: Ricardo Correia
+
 <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
