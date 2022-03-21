@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Ifood {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
     static Scanner scan = new Scanner(System.in);
     public static void main (String[] args) {
@@ -21,11 +21,8 @@ public class Main {
             escolha = scan.nextInt();
     
             switch (escolha) {
-                case 1: //TODO editar quando tiver com o banco de dados.
-                System.out.print("digite seu login: ");
-                scan.next();
-                System.out.print("digite sua senha: ");
-                scan.next();
+                case 1:
+
                     
                     break;
                 case 2:
@@ -40,11 +37,9 @@ public class Main {
                     System.out.print("Insira seu cnpj: ");
                     String cnpj = scan.next();
                     System.out.print("Insira seu horarios: ");
-                    //TODO: Implementar o scan de tempo de abertura e fechamento
-                    System.out.print("Insira seu endereço: ");
+                    //TODO: Aprender como a biblioteca calendar.
                     Endereco enderecoComp = getEndereco();
 
-                    //TODO: Usar o construtor da classe Estabelecimento
 
                     break;
             
