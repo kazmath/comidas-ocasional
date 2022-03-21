@@ -12,6 +12,7 @@ public class Main {
         int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
         int minAtual = hoje.get(Calendar.MINUTE);
         int tempAtual = minAtual + (horaAtual * 60);
+        ArrayList<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         boolean controlador = true;
 
@@ -28,7 +29,7 @@ public class Main {
             escolha = scan.nextInt();
 
             switch (escolha) {
-                case 1: // TODO editar quando tiver com o banco de dados.
+                case 1: //TODO: Matheus
                     System.out.print("digite seu login: ");
                     String entradalogin = scan.next();
                     System.out.print("digite sua senha: ");
@@ -49,17 +50,29 @@ public class Main {
                     System.out.println("Cadastro realizado com sucesso!\n\n");
                     break;
                 case 3:
-                    System.out.print("Insira seu nome: ");
+                    System.out.print("Insira o nome do restaurante: ");
                     String nome = scan.next();
-                    System.out.print("Insira seu cnpj: ");
+                    System.out.print("Insira o cnpj: ");
                     String cnpj = scan.next();
-                    System.out.print("Insira seu horarios: ");
+                    System.out.print("Insira os horarios de funcionamento: ");
+                    /**
+                     * int abertura = getTempoAbertura()
+                     * int fechamento = getTempoFechamento()
+                     * HashMap<String,Integer> menu = getMenu()
+                     */
                     getTempo();
                     System.out.print("Insira seu endereço: ");
                     Endereco enderecoComp = getEndereco();
 
-                    // TODO: Usar o construtor da classe Estabelecimento
-                    // TODO: Transformar em um método
+                    Estabelecimento estabelecimento = new Estabelecimento(
+                        nome,
+                        cnpj,
+                        abertura, //TODO: getTempoAbertura()
+                        fechamento, //TODO: getTempoFechamento()
+                        menu //TODO: getMenu()
+                    );
+                    estabelecimento.addEndereco(enderecoComp);
+                    estabelecimentos.add(estabelecimento);
 
                     break;
 
