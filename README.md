@@ -8,3 +8,5 @@
 * [ ] Cliente deve escolher entrega/retirada.
 * [ ] Se a forma de pagamento selecionada for dinheiro ou cartao deve ser pago na hora quando a entrega chegar ao cliente ou na hora da retirada.
 * [ ] Se a forma de pagamento for diferente de dinheiro ou cartao deve ser feita pelo aplicativo.
+
+<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
