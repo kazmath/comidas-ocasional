@@ -2,12 +2,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.io.BufferedInputStream;
 
 public class Main {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
-    static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+        BufferedInputStream bufferScan = new BufferedInputStream(System.in);
+
+        Scanner scan = new Scanner(System.in);
         int escolha;
         Calendar hoje = Calendar.getInstance();
         int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
@@ -66,22 +69,24 @@ public class Main {
                     System.out.println("Cadastro realizado com sucesso!\n\n");
                     break;
                 case 3:
-                    System.out.print("Insira o nome do restaurante: ");
-                    String nome = scan.next();
-                    System.out.print("Insira o cnpj: ");
-                    String cnpj = scan.next();
-                    System.out.print("Insira os horarios de funcionamento: ");
+                    System.out.println("Insira o nome do restaurante: ");
+                    scan.nextLine(); // Gambiarra
+                    String nome = scan.nextLine();
+
+                    System.out.println("Insira o cnpj: ");
+                    Integer cnpj = scan.nextInt();
+                    System.out.println("Insira os horarios de funcionamento: ");
                     
                     int abertura = getTempoAbertura();
                     int fechamento = getTempoFechamento();
 
-                    System.out.print("Insira seu endereço: ");
+                    System.out.println("Insira seu endereço: ");
                     Endereco enderecoComp = getEndereco();
                     HashMap<String, Integer> menu = getMenu();
 
                     Estabelecimento estabelecimento = new Estabelecimento(
                             nome,
-                            cnpj,
+                            cnpj.toString(),
                             abertura,
                             fechamento,
                             menu 
@@ -103,18 +108,20 @@ public class Main {
     }
 
     private static Cadastro getCadastro() {
+        Scanner scanCadastro = new Scanner(System.in);
+        
         System.out.println("Digite as inforações");
         System.out.print("nome: ");
-        String login = scan.next();
+        String login = scanCadastro.next();
 
         System.out.print("CPF: ");
-        String cpf = scan.next();
+        String cpf = scanCadastro.next();
 
         System.out.print("email: ");
-        String email = scan.next();
+        String email = scanCadastro.next();
 
         System.out.print("senha: ");
-        String senha = scan.next();
+        String senha = scanCadastro.next();
 
         return new Cadastro(login, cpf, email, senha);
     }
@@ -139,6 +146,7 @@ public class Main {
     }
 
     private static int getTempoAbertura() {
+        Scanner scanTempoAb = new Scanner(System.in);
         int horaAbertura;
         int minAbertura;
         int abertura;
@@ -146,13 +154,13 @@ public class Main {
         do {
             System.out.println(
                     "Digite a HORA de abertura do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n>");
-            horaAbertura = scan.nextInt();
+            horaAbertura = scanTempoAb.nextInt();
         } while (horaAbertura < 0 && horaAbertura > 23);
 
         do {
             System.out.println(
                     "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
-            minAbertura = scan.nextInt();
+            minAbertura = scanTempoAb.nextInt();
         } while (minAbertura < 0 && minAbertura > 59);
 
         abertura = minAbertura + (horaAbertura * 60);
@@ -161,6 +169,7 @@ public class Main {
     }
 
     private static int getTempoFechamento() {
+        Scanner scanTempoFec = new Scanner(System.in);
         int horaFechamento;
         int minFechamento;
         int fechamento;
@@ -168,13 +177,13 @@ public class Main {
         do {
             System.out.println(
                     "Digite a HORA de fechamento do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
-            horaFechamento = scan.nextInt();
+            horaFechamento = scanTempoFec.nextInt();
         } while (horaFechamento < 0 && horaFechamento > 23);
 
         do {
             System.out.println(
                     "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
-            minFechamento = scan.nextInt();
+            minFechamento = scanTempoFec.nextInt();
         } while (minFechamento < 0 && minFechamento > 59);
 
         fechamento = minFechamento + (horaFechamento * 60);
@@ -184,6 +193,7 @@ public class Main {
 
     private static HashMap<String, Integer> getMenu(){
 
+        Scanner scanMenu = new Scanner(System.in);
         HashMap<String, Integer> menu = new HashMap<String, Integer>();
         System.out.println("Central do Menu");
         boolean controlador = true;
@@ -200,25 +210,29 @@ public class Main {
 
             """);
             System.out.println("Escolha as opções:");
-            escolha = scan.nextInt();
+            escolha = scanMenu.nextInt();
 
             switch (escolha){
                 case 1: 
                     System.out.println("Digite o nome do prato adicionalo.");
-                    String prato = scan.next();
+                    scanMenu.nextLine(); // Gambiarras
+                    String prato = scanMenu.nextLine();
                     System.out.println("Digite o valor do prato adicionalo.");
-                    int valor = (int) (scan.nextFloat() * 100);
+                    int valor = (int) (scanMenu.nextFloat() * 100);
                     valor = valor * 100;
                     menu.put(prato, valor);
+                    break;
 
                 case 2:
                     if(menu.size() > 0){
                         System.out.println("Digite o prato para Removê-lo.");
-                        String nome = scan.next();
+                        scanMenu.nextLine(); // Gambiarras
+                        String nome = scanMenu.nextLine();
                         menu.remove(nome);
                     } else {
                         System.out.println("Não há nenhum item registrado no menu.");
                     }
+                    break;
                 case 3:
                     controlador = false;
                     break;
