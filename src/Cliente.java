@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Cliente implements IEndereco {
     Cadastro cadastro;
-    ArrayList<Endereco> enderecos;
+    ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Cliente (Cadastro cadastro) {
         this.cadastro = cadastro;

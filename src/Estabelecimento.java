@@ -5,7 +5,7 @@ public class Estabelecimento implements IEndereco {
     String cnpj;
     int abertura;
     int fechamento;
-    ArrayList<Endereco> enderecos;
+    ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
     HashMap<String, Integer> menu;
     String nome;
 

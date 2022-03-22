@@ -17,9 +17,10 @@ public class Main {
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         boolean controlador = true;
 
+        System.out.println("Bem-Vindo ao Comidas Ocasionais");
         while (controlador) {
-            System.out.println("Bem-Vindo ao Comidas Ocasionais");
-            System.out.println("""
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("""
                     =========================================
                     1-Login
                     2-Cadastro de Usuario
@@ -28,17 +29,42 @@ public class Main {
                     """);
             System.out.println("Escolha as opções:");
             escolha = scan.nextInt();
-
+            } catch (Exception e) {
+                throw e;
+            }
             switch (escolha) {
                 case 1: // TODO: Matheus
-                    System.out.print("digite seu login: ");
-                    String entradalogin = scan.next();
-                    System.out.print("digite sua senha: ");
-                    String entradasenha = scan.next();
+                    String entradaLogin;
+                    String entradaSenha;
+                    try (Scanner scan = new Scanner(System.in)) {
+                        System.out.print("Digite seu login: ");
+                        entradaLogin = scan.next();
+                        System.out.print("Digite sua senha: ");
+                        entradaSenha = scan.next();
+                    } catch (Exception e) {
+                        throw e;
+                    }
+    
 
                     for (Cliente cliente : clientes) {
-
+                        Cadastro cadastro = cliente.getCadastro();
+                        if (
+                            cadastro.getLogin().equals(entradaLogin)
+                            &&
+                            cadastro.getSenha().equals(entradaSenha)
+                        ) {
+                            controlador = false;
+                            System.out.println();
+                            break;
+                        } else {
+                            continue;
+                        }
                     }
+                    System.out.println(
+                        controlador == false
+                            ? "Login realizado com sucesso!\n"
+                            : "ERRO: Credenciais não registradas. Cadastre-se primeiro.\n"
+                    );
 
                     break;
                 case 2:
@@ -50,11 +76,18 @@ public class Main {
                     System.out.println("Cadastro realizado com sucesso!\n\n");
                     break;
                 case 3:
-                    System.out.print("Insira o nome do restaurante: ");
-                    String nome = scan.next();
-                    System.out.print("Insira o cnpj: ");
-                    String cnpj = scan.next();
-                    System.out.print("Insira os horarios de funcionamento: ");
+                    String nome;
+                    String cnpj;
+                    try (Scanner scan = new Scanner(System.in)) {
+	                    System.out.print("Insira o nome do restaurante: ");
+                        nome = scan.next();
+                        System.out.print("Insira o cnpj: ");
+                        cnpj = scan.next();
+                        System.out.print("Insira os horarios de funcionamento: ");
+
+                    } catch (Exception e) {
+                        throw e;
+                    }
                     
                     int abertura = getTempoAbertura();
                     int fechamento = getTempoFechamento();
@@ -87,35 +120,48 @@ public class Main {
     }
 
     private static Cadastro getCadastro() {
+        String login;
+        String cpf;
+        String email;
+        String senha;
+        
         System.out.println("Digite as inforações");
         System.out.print("nome: ");
-        String login = scan.next();
+        login = scan.next();
 
         System.out.print("CPF: ");
-        String cpf = scan.next();
+        cpf = scan.next();
 
         System.out.print("email: ");
-        String email = scan.next();
+        email = scan.next();
 
         System.out.print("senha: ");
-        String senha = scan.next();
+        senha = scan.next();
 
         return new Cadastro(login, cpf, email, senha);
     }
 
     private static Endereco getEndereco() {
-        System.out.println("Digite as inforações");
-        System.out.print("Rua: ");
-        String Rua = scan.next();
-
-        System.out.print("Número da Casa: ");
-        String numCasa = scan.next();
-
-        System.out.print("Bairro: ");
-        String Bairro = scan.next();
-
-        System.out.print("Cidade: ");
-        String Cidade = scan.next();
+        String Rua;
+        String numCasa;
+        String Bairro;
+        String Cidade;
+        try (Scanner scan = new Scanner(System.in)) {
+            System.out.println("Digite as inforações");
+            System.out.print("Rua: ");
+            Rua = scan.nextLine();
+    
+            System.out.print("Número da Casa: ");
+            numCasa = scan.nextLine();
+    
+            System.out.print("Bairro: ");
+            Bairro = scan.nextLine();
+    
+            System.out.print("Cidade: ");
+            Cidade = scan.nextLine();
+        } catch (Exception e) {
+            throw e;
+        }
 
         return new Endereco(Rua, numCasa, Bairro, Cidade);
     }
@@ -124,20 +170,23 @@ public class Main {
         int horaAbertura;
         int minAbertura;
         int abertura;
-
-        do {
-            System.out.println(
-                    "Digite a HORA de abertura do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n>");
-            horaAbertura = scan.nextInt();
-        } while (horaAbertura < 0 && horaAbertura > 23);
-
-        do {
-            System.out.println(
-                    "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
-            minAbertura = scan.nextInt();
-        } while (minAbertura < 0 && minAbertura > 59);
-
-        abertura = minAbertura + (horaAbertura * 60);
+        try (Scanner scan = new Scanner(System.in)) {
+	        do {
+                System.out.println(
+                        "Digite a HORA de abertura do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n>");
+                horaAbertura = scan.nextInt();
+            } while (horaAbertura < 0 && horaAbertura > 23);
+    
+            do {
+                System.out.println(
+                        "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
+                minAbertura = scan.nextInt();
+            } while (minAbertura < 0 && minAbertura > 59);
+    
+            abertura = minAbertura + (horaAbertura * 60);    
+        } catch (Exception e) {
+            throw e;
+        }
 
         return abertura;
     }
@@ -146,20 +195,24 @@ public class Main {
         int horaFechamento;
         int minFechamento;
         int fechamento;
-
-        do {
-            System.out.println(
-                    "Digite a HORA de fechamento do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
-            horaFechamento = scan.nextInt();
-        } while (horaFechamento < 0 && horaFechamento > 23);
-
-        do {
-            System.out.println(
-                    "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
-            minFechamento = scan.nextInt();
-        } while (minFechamento < 0 && minFechamento > 59);
-
-        fechamento = minFechamento + (horaFechamento * 60);
+        try (Scanner scan = new Scanner(System.in)) {
+	        do {
+                System.out.println(
+                        "Digite a HORA de fechamento do seu estabelecimento\nhorários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
+                horaFechamento = scan.nextInt();
+            } while (horaFechamento < 0 && horaFechamento > 23);
+    
+            do {
+                System.out.println(
+                        "Digite os MINUTOS de abertura do seu estabelecimento\nhorários válidos são de 0 a 59\n<NÃO DIGITE AS HORAS>\n>");
+                minFechamento = scan.nextInt();
+            } while (minFechamento < 0 && minFechamento > 59);
+    
+            fechamento = minFechamento + (horaFechamento * 60);
+    
+        } catch (Exception e) {
+            throw e;
+        }
 
         return fechamento;
     }
@@ -170,42 +223,45 @@ public class Main {
         System.out.println("Central do Menu");
         boolean controlador = true;
         int escolha;
-        while (controlador) {
-             System.out.println("""
-            Gostaria de Adicionar um item
-            _________________________________________________
-
-            1- Adicionar prato 
-            2- Remover prato
-            3- Confirmar selação
-            _________________________________________________
-
-            """);
-            System.out.println("Escolha as opções:");
-            escolha = scan.nextInt();
-
-            switch (escolha){
-                case 1: 
-                    System.out.println("Digite o nome do prato adicionalo.");
-                    String prato = scan.next();
-                    System.out.println("Digite o valor do prato adicionalo.");
-                    int valor = (int) (scan.nextFloat() * 100);
-                    valor = valor * 100;
-                    menu.put(prato, valor);
-
-                case 2:
-                    if(menu.size() > 0){
-                        System.out.println("Digite o prato para Removê-lo.");
-                        String nome = scan.next();
-                        menu.remove(nome);
-                    } else {
-                        System.out.println("Não há nenhum item registrado no menu.");
-                    }
-                case 3:
-                    controlador = false;
-                    break;
+        try (Scanner scan = new Scanner(System.in)) {
+	        while (controlador) {
+            
+                System.out.println("""
+                =================================================
+                1- Adicionar prato 
+                2- Remover prato
+                3- Confirmar selação
+                =================================================
+                """);
+                System.out.println("Escolha as opções:");
+                escolha = scan.nextInt();
+    
+                switch (escolha){
+                    case 1: 
+                        System.out.println("Digite o nome do prato adicionalo.");
+                        String prato = scan.next();
+                        System.out.println("Digite o valor do prato adicionalo.");
+                        int valor = (int) (scan.nextFloat() * 100);
+                        valor = valor * 100;
+                        menu.put(prato, valor);
+    
+                    case 2:
+                        if(menu.size() > 0){
+                            System.out.println("Digite o prato para Removê-lo.");
+                            String nome = scan.next();
+                            menu.remove(nome);
+                        } else {
+                            System.out.println("Não há nenhum item registrado no menu.");
+                        }
+                    case 3:
+                        controlador = false;
+                        break;
+                }
+    
             }
-
+    
+        } catch (Exception e) {
+            throw e;
         }
         return menu;
     }
