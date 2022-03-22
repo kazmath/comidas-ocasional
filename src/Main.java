@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -54,26 +55,24 @@ public class Main {
                     System.out.print("Insira o cnpj: ");
                     String cnpj = scan.next();
                     System.out.print("Insira os horarios de funcionamento: ");
-                    /**
-                     * HashMap<String,Integer> menu = getMenu()
-                     */
-                    getTempoAbertura();
-                    getTempoFechamento();
+                    
                     int abertura = getTempoAbertura();
                     int fechamento = getTempoFechamento();
 
                     System.out.print("Insira seu endereço: ");
                     Endereco enderecoComp = getEndereco();
+                    HashMap<String, Integer> menu = getMenu();
 
                     Estabelecimento estabelecimento = new Estabelecimento(
                             nome,
                             cnpj,
                             abertura,
                             fechamento,
-                            menu // TODO: getMenu()
+                            menu 
                     );
                     estabelecimento.addEndereco(enderecoComp);
                     estabelecimentos.add(estabelecimento);
+                    
 
                     break;
 
@@ -165,4 +164,49 @@ public class Main {
         return fechamento;
     }
 
+    private static HashMap<String, Integer> getMenu(){
+
+        HashMap<String, Integer> menu = new HashMap<String, Integer>();
+        System.out.println("Central do Menu");
+        boolean controlador = true;
+        int escolha;
+        while (controlador) {
+             System.out.println("""
+            Gostaria de Adicionar um item
+            _________________________________________________
+
+            1- Adicionar prato 
+            2- Remover prato
+            3- Confirmar selação
+            _________________________________________________
+
+            """);
+            System.out.println("Escolha as opções:");
+            escolha = scan.nextInt();
+
+            switch (escolha){
+                case 1: 
+                    System.out.println("Digite o nome do prato adicionalo.");
+                    String prato = scan.next();
+                    System.out.println("Digite o valor do prato adicionalo.");
+                    int valor = (int) (scan.nextFloat() * 100);
+                    valor = valor * 100;
+                    menu.put(prato, valor);
+
+                case 2:
+                    if(menu.size() > 0){
+                        System.out.println("Digite o prato para Removê-lo.");
+                        String nome = scan.next();
+                        menu.remove(nome);
+                    } else {
+                        System.out.println("Não há nenhum item registrado no menu.");
+                    }
+                case 3:
+                    controlador = false;
+                    break;
+            }
+
+        }
+        return menu;
+    }
 }
