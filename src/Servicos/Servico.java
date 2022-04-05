@@ -1,26 +1,30 @@
+package Servicos;
+
+import Entidades.Cliente;
+import Entidades.Estabelecimento;
+
 public class Servico {
     enum Pagamento {
         DINHEIRO,
         PIX,
         CARTAO
     }
+
     Cliente cliente;
     Estabelecimento estabelecimento;
     Pagamento pagamento;
     boolean retirada;
 
     public Servico(
-        Cliente cliente,
-        Estabelecimento estabelecimento,
-        Pagamento pagamento,
-        boolean retirada
-    ) {
+            Cliente cliente,
+            Estabelecimento estabelecimento,
+            Pagamento pagamento,
+            boolean retirada) {
         this.cliente = cliente;
         this.estabelecimento = estabelecimento;
         this.pagamento = pagamento;
         this.retirada = retirada;
     }
-
 
     public Cliente getCliente() {
         return this.cliente;

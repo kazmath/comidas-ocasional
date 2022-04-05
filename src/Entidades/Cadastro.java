@@ -1,10 +1,12 @@
+package Entidades;
+
 public class Cadastro {
     String login;
     String cpf;
     String email;
     String senha;
 
-    public Cadastro ( String login, String cpf, String email, String senha ) {
+    public Cadastro(String login, String cpf, String email, String senha) {
         this.login = login;
         this.cpf = cpf;
         this.email = email;
@@ -38,6 +40,5 @@ public class Cadastro {
     public void changeSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
 }

@@ -1,4 +1,9 @@
+package Entidades;
+
 import java.util.HashMap;
+
+import Interfaces.IEndereco;
+
 import java.util.ArrayList;
 
 public class Estabelecimento implements IEndereco {
@@ -14,8 +19,7 @@ public class Estabelecimento implements IEndereco {
             String cnpj,
             int abertura,
             int fechamento,
-            HashMap<String, Integer> menu
-        ) {
+            HashMap<String, Integer> menu) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.abertura = abertura;

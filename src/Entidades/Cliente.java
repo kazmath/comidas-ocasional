@@ -1,10 +1,14 @@
+package Entidades;
+
 import java.util.ArrayList;
+
+import Interfaces.IEndereco;
 
 public class Cliente implements IEndereco {
     Cadastro cadastro;
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
-    public Cliente (Cadastro cadastro) {
+    public Cliente(Cadastro cadastro) {
         this.cadastro = cadastro;
     }
 
@@ -31,6 +35,5 @@ public class Cliente implements IEndereco {
     public void deleteEndereco(int index) {
         this.enderecos.remove(index);
     }
-
 
 }

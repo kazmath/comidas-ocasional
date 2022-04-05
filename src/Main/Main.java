@@ -1,7 +1,15 @@
+package Main;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import Entidades.Cadastro;
+import Entidades.Cliente;
+import Entidades.Endereco;
+import Entidades.Estabelecimento;
+import Servicos.Servico;
 
 public class Main {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
