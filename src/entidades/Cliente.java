@@ -1,8 +1,8 @@
-package Entidades;
+package entidades;
 
 import java.util.ArrayList;
 
-import Interfaces.IEndereco;
+import interfaces.IEndereco;
 
 public class Cliente implements IEndereco {
     Cadastro cadastro;

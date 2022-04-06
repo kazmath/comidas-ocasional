@@ -1,7 +1,7 @@
-package Servicos;
+package servicos;
 
-import Entidades.Cliente;
-import Entidades.Estabelecimento;
+import entidades.Cliente;
+import entidades.Estabelecimento;
 
 public class Servico {
     enum Pagamento {

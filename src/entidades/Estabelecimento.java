@@ -1,8 +1,8 @@
-package Entidades;
+package entidades;
 
 import java.util.HashMap;
 
-import Interfaces.IEndereco;
+import interfaces.IEndereco;
 
 import java.util.ArrayList;
 

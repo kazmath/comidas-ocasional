@@ -1,6 +1,6 @@
-package Interfaces;
+package interfaces;
 
-import Entidades.Endereco;
+import entidades.Endereco;
 
 public interface IEndereco {
     public void addEndereco(Endereco endereco);
