@@ -1,12 +1,9 @@
 package entidades;
 
 import java.util.HashMap;
-
-import interfaces.IEndereco;
-
 import java.util.ArrayList;
 
-public class Estabelecimento implements IEndereco {
+public class Estabelecimento {
     String cnpj;
     int abertura;
     int fechamento;

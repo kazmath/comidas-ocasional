@@ -2,9 +2,7 @@ package entidades;
 
 import java.util.ArrayList;
 
-import interfaces.IEndereco;
-
-public class Cliente implements IEndereco {
+public class Cliente {
     Cadastro cadastro;
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
