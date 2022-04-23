@@ -154,13 +154,13 @@ public class Main {
 
         do {
             System.out.print(
-                    "Digite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
+                    "\u001B[32mDigite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
             horaAbertura = scanTempoAb.nextInt();
         } while (horaAbertura < 0 || horaAbertura > 23);
 
         do {
             System.out.print(
-                    "Digite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> ");
+                    "\u001B[32mDigite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
             minAbertura = scanTempoAb.nextInt();
         } while (minAbertura < 0 || minAbertura > 59);
 
@@ -177,13 +177,13 @@ public class Main {
 
         do {
             System.out.print(
-                    "Digite a HORA de Fechamento do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
+                    "\u001B[31mDigite a HORA de Fechamento do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
             horaFechamento = scanTempoFec.nextInt();
         } while (horaFechamento < 0 || horaFechamento > 23);
 
         do {
             System.out.print(
-                    "Digite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> ");
+                    "\u001B[31mDigite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
             minFechamento = scanTempoFec.nextInt();
         } while (minFechamento < 0 || minFechamento > 59);
 
