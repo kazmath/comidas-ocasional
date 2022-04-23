@@ -153,16 +153,16 @@ public class Main {
         int abertura;
 
         do {
-            System.out.println(
-                    "Digite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n>");
+            System.out.print(
+                    "Digite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
             horaAbertura = scanTempoAb.nextInt();
-        } while (horaAbertura < 0 && horaAbertura > 23);
+        } while (horaAbertura < 0 || horaAbertura > 23);
 
         do {
-            System.out.println(
-                    "Digite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n>");
+            System.out.print(
+                    "Digite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> ");
             minAbertura = scanTempoAb.nextInt();
-        } while (minAbertura < 0 && minAbertura > 59);
+        } while (minAbertura < 0 || minAbertura > 59);
 
         abertura = minAbertura + (horaAbertura * 60);
 
@@ -176,16 +176,16 @@ public class Main {
         int fechamento;
 
         do {
-            System.out.println(
+            System.out.print(
                     "Digite a HORA de Fechamento do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> ");
             horaFechamento = scanTempoFec.nextInt();
-        } while (horaFechamento < 0 && horaFechamento > 23);
+        } while (horaFechamento < 0 || horaFechamento > 23);
 
         do {
-            System.out.println(
-                    "Digite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n>");
+            System.out.print(
+                    "Digite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> ");
             minFechamento = scanTempoFec.nextInt();
-        } while (minFechamento < 0 && minFechamento > 59);
+        } while (minFechamento < 0 || minFechamento > 59);
 
         fechamento = minFechamento + (horaFechamento * 60);
 
