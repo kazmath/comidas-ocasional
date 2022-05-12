@@ -1,0 +1,30 @@
+body {
+    background-color: 	#696969;
+}
+
+form {
+    background-color: 	#808080;
+    border-radius: 10px;
+    color: #DCDCDC;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+.subButton {
+    background-color: #696969;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    margin-right: 40%;
+    margin-left: 30%;
+}
+
+.ComOcaIMG {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

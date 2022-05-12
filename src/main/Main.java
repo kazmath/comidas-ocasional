@@ -18,10 +18,6 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         int escolha;
-        Calendar hoje = Calendar.getInstance();
-        int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
-        int minAtual = hoje.get(Calendar.MINUTE);
-        int tempAtual = minAtual + (horaAtual * 60);
         ArrayList<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         boolean controlador = true;
@@ -240,5 +236,18 @@ public class Main {
 
         }
         return menu;
+    }
+
+    private static boolean checkTempo(int abertura, int fechamento) {
+        Calendar hoje = Calendar.getInstance();
+        int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
+        int minAtual = hoje.get(Calendar.MINUTE);
+        int tempAtual = minAtual + (horaAtual * 60);
+
+        if (tempAtual > abertura && tempAtual < fechamento) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

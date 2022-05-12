@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comidas Ocasional</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+        <div>
+            <img src="Logo.png" height="256px" width="256px" class="ComOcaIMG">
+            
+
+        <form class="Comes" action="">
+
+          
+          <br>
+  
+          <input type="radio" name="choice" id="fchoice" value="1" class="choice">
+          <label for="fchoice">Login</label>
+  
+          <br>
+  
+          <input type="radio" name="choice" id="schoice" value="2" class="choice">
+          <label for="schoice">Cadastro de Usuário</label>
+  
+          <br>
+  
+          <input type="radio" name="choice" id="tchoice" value="3" class="choice">
+          <label for="tchoice">Cadastro de Estabelecimento</label>
+  
+          <br>
+              <a href="#" class="LinkBotao" id="button">
+                <input type="button" value="confirmar" id="confirmar" name="confirmar" class="subButton">
+              </a>
+        </form>
+  
+        <script type="text/javascript">
+          jQuery(function($){
+             $('.choice').click(function(){
+             var volume = $(this).val();
+     
+             if (volume == "1") {
+                     $('#button').attr('href', 'http://www.youtube.com.br');
+             }
+             else if (volume == "2") {
+                 $('#button').attr('href', 'http://www.uol.com.br');
+             }
+             else if (volume == "3") {
+                 $('#button').attr('href', 'http://www.yahoo.com.br');
+             }
+         });
+     });
+     </script>
+        </div>
+</body>
+</html>
