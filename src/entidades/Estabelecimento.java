@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Estabelecimento {
+    String nome;
     String cnpj;
     int abertura;
     int fechamento;
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
     HashMap<String, Integer> menu;
-    String nome;
 
     public Estabelecimento(
             String nome,

@@ -6,12 +6,12 @@
 
 #title {
     margin-left: 7%;
-    color: #380B61;
+    color: #EC7B59;
 }
 
 #caption {
-    margin-left: 10%;
-    color: #380B61;
+    margin-left: 2%;
+    color: #EC7B59;
 }
 
 fieldset {
@@ -19,17 +19,17 @@ fieldset {
 }
 
 body {
-    background-color: #F0F8FF;
+    background-color: #524556;
     font-size: 1em;
-    color: #59429d;
+    color: #EC7B59;
     margin-left: 36%;
     margin-top: 2%;
     justify-content: center;
 }
 
-input, select, textarea, button {
+input, textarea, button {
     font-size: 1em;
-    color: #59429d;
+    color: #EC7B59;
     border-radius: 5px;
 }
 
@@ -47,7 +47,7 @@ input, select, textarea, button {
 .comoca label {
     display: block;
     margin-bottom: 0.2em;
-    color: #59429d;
+    color: #EC7B59;
 }
 
 fieldset.group .comoca {
@@ -57,7 +57,7 @@ fieldset.group .comoca {
 
 .comoca input[type=text], .comoca input[type=password], .comoca input[type=email] {
     padding: 00.2em;
-    border: 1px solid #59429d;
+    border: 1px solid #E4DDCB;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     display: block;
 }
@@ -68,7 +68,7 @@ fieldset.group .comoca {
 
 .button {
     font-size: 1.2em;
-    background: #59429d;
+    background: #E4DDCB;
     border: 0;
     margin-bottom: 1em;
     color: #ffffff;

@@ -73,7 +73,7 @@ public class Main {
                     String nome = scan.nextLine();
 
                     System.out.println("Insira o cnpj: ");
-                    Integer cnpj = scan.nextInt();
+                    String cnpj = scan.nextLine();
                     // System.out.println("Insira os horários de funcionamento: ");
 
                     int abertura = getTempoAbertura();
@@ -85,7 +85,7 @@ public class Main {
 
                     Estabelecimento estabelecimento = new Estabelecimento(
                             nome,
-                            cnpj.toString(),
+                            cnpj,
                             abertura,
                             fechamento,
                             menu);
