@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre seu Estabelecimento</title>
-    <link rel="icon" href="./icon.png">
+    <link rel="icon" href="/src/pages/resources/icon.png">
+    <link rel="stylesheet" href="/src/pages/styles/cadastroEstabelecimento.css">
 </head>
   <body>
     <div>
@@ -18,25 +19,26 @@
             
             <div class="comoca">
                 <label for="login"><strong>Login do Estabelecimento</strong><br></label>
-                <input type="text" name="login" id="login" placeholder="Digite o login..." required>
+                <input type="text" name="login" id="login" placeholder="Login" required>
             </div>
 
             <div class="comoca">
                 <label for="senha"><strong>Senha do Estabelecimento</strong><br></label>
-                <input type="password" name="senha" id="senha" placeholder="Digite a senha..." required>
+                <input type="password" name="senha" id="senha" placeholder="******" required>
             </div>
         </fieldset>
 
         <fieldset class="group">
 
             <div class="comoca">
-                <label for="name"><strong>Nome do seu Estabelecimento:</strong><br></label>
-                <input type="text" name="name" id="name" required>
+                <label for="name"><strong>Nome do Estabelecimento:</strong></label>
+                <br>
+                <input type="text" name="name" id="name" placeholder="Comidas Ocasional" required>
             </div>
 
             <div class="comoca">
                 <label for="cpnj"><strong>Informe seu CNPJ:</strong><br>Apenas os números, sem <strong>[ . ]</strong> ou <strong>[ - ]</strong></label>
-               <input type="text" name="cnpj" id="cnpj" pattern="\d{11}" required>
+               <input type="text" name="cnpj" id="cnpj" pattern="\d{11}" placeholder="12345678955" required>
             </div>
             
         </fieldset>
@@ -45,12 +47,7 @@
 
             <div class="comoca">
                 <label for="email"><strong>E-mail:</strong></label>
-                <input type="email" name="email" id="email" required>
-            </div>
-    
-            <div class="comoca">
-                <label for="password"><strong>Senha:</strong></label>
-                <input type="password" name="password" id="password" required>
+                <input type="email" name="email" id="email" placeholder="example@example.com" required>
             </div>
 
         </fieldset>
@@ -81,12 +78,12 @@
 
             <div class="comoca">
                 <label for="street"><strong>Rua:</strong></label>
-                <input type="text" name="street" id="street" required>
+                <input type="text" name="street" id="street" placeholder="Rua dos Bobos" required>
             </div>
     
             <div class="comoca">
                 <label for="houseNum"><strong>Número da casa:</strong></label>
-                <input type="text" name="houseNum" id="houseNum" required>
+                <input type="text" name="houseNum" id="houseNum" placeholder="Digite apenas o número" required>
             </div>
 
         </fieldset>
@@ -95,17 +92,18 @@
 
             <div class="comoca">
                 <label for="district"><strong>Bairro:</strong></label>
-                <input type="text" name="district" id="district" required>
+                <input type="text" name="district" id="district" placeholder="Centro" required>
             </div>
     
             <div class="comoca">
                 <label for="city"><strong>Cidade:</strong></label>
-                <input type="text" name="city" id="city" required>
+                <input type="text" name="city" id="city" placeholder="Nova York" required>
             </div>
             
         </fieldset>
 
         <button class="button" type="submit" onsubmit="">Concluído</button> 
     </form>
+    
   </body>
 </html>

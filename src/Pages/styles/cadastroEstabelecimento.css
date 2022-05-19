@@ -5,12 +5,11 @@
 }
 
 #title {
-    margin-left: 7%;
     color: #EC7B59;
 }
 
 #caption {
-    margin-left: 2%;
+    margin-left: 5%;
     color: #EC7B59;
 }
 
@@ -25,6 +24,10 @@ body {
     margin-left: 36%;
     margin-top: 2%;
     justify-content: center;
+    background-image: url("/src/pages/resources/shop.png");
+    background-repeat: no-repeat;
+    background-position: 535px 145px;
+    background-size: 256px 256px;
 }
 
 input, textarea, button {
@@ -37,13 +40,14 @@ input, textarea, button {
     display: table;
 }
 
-.group:after{
+.group:after {
     clear: both;
 }
 
-.comoca{
+.comoca {
     margin-bottom: 1em;
 }
+
 .comoca label {
     display: block;
     margin-bottom: 0.2em;
@@ -68,10 +72,10 @@ fieldset.group .comoca {
 
 .button {
     font-size: 1.2em;
-    background: #E4DDCB;
+    background: #EC7B59;
     border: 0;
     margin-bottom: 1em;
-    color: #ffffff;
+    color: #E4DDCB;
     padding: 0.2em 0.6em;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -83,7 +87,7 @@ fieldset.group .comoca {
 }
 
 .button:hover {
-    background: #CCBBFF;
+    background: #CE4646;
     box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: none;
 }
