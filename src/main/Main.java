@@ -60,15 +60,13 @@ public class Main {
 
                     break;
                 case 2:
-                    Cadastro cadastro = getCadastro();
-                    Endereco enderecoUser = getEndereco();
-                    Cliente cliente = new Cliente(cadastro);
-                    cliente.addEndereco(enderecoUser);
+                
+                    Cliente cliente = cadCliente();
                     clientes.add(cliente);
-                    System.out.println("Cadastro realizado com sucesso!\n\n");
+
                     break;
                 case 3:
-                    
+
                     Estabelecimento estabelecimento = cadRestaurante();
                     estabelecimentos.add(estabelecimento);
 
@@ -82,6 +80,16 @@ public class Main {
 
         }
 
+    }
+
+    private static Cliente cadCliente() {
+        Cadastro cadastro = getCadastro();
+        Endereco enderecoUser = getEndereco();
+        Cliente cliente = new Cliente(cadastro);
+        cliente.addEndereco(enderecoUser);
+        System.out.println("Cadastro realizado com sucesso!\n\n");
+
+        return cliente;
     }
     
     private static Estabelecimento cadRestaurante() {
