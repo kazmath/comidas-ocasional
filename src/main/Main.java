@@ -44,36 +44,14 @@ public class Main {
 
                     break;
                 case 2:
-                    Cadastro cadastro = getCadastro();
-                    Endereco enderecoUser = getEndereco();
-                    Cliente cliente = new Cliente(cadastro);
-                    cliente.addEndereco(enderecoUser);
+                
+                    Cliente cliente = cadCliente();
                     clientes.add(cliente);
-                    System.out.println("Cadastro realizado com sucesso!\n\n");
+
                     break;
                 case 3:
-                    System.out.println("Insira o nome do restaurante: ");
-                    scan.nextLine(); // Gambiarra
-                    String nome = scan.nextLine();
 
-                    System.out.println("Insira o cnpj: ");
-                    String cnpj = scan.nextLine();
-                    // System.out.println("Insira os horários de funcionamento: ");
-
-                    int abertura = getTempoAbertura();
-                    int fechamento = getTempoFechamento();
-
-                    System.out.println("Insira seu endereço: ");
-                    Endereco enderecoComp = getEndereco();
-                    HashMap<String, Integer> menu = getMenu();
-
-                    Estabelecimento estabelecimento = new Estabelecimento(
-                            nome,
-                            cnpj,
-                            abertura,
-                            fechamento,
-                            menu);
-                    estabelecimento.addEndereco(enderecoComp);
+                    Estabelecimento estabelecimento = cadRestaurante();
                     estabelecimentos.add(estabelecimento);
 
                     break;
@@ -86,6 +64,43 @@ public class Main {
 
         }
 
+    }
+
+    private static Cliente cadCliente() {
+        Cadastro cadastro = getCadastro();
+        Endereco enderecoUser = getEndereco();
+        Cliente cliente = new Cliente(cadastro);
+        cliente.addEndereco(enderecoUser);
+        System.out.println("Cadastro realizado com sucesso!\n\n");
+
+        return cliente;
+    }
+    
+    private static Estabelecimento cadRestaurante() {
+        Scanner scanCadRest = new Scanner(System.in);
+        System.out.println("Insira o nome do restaurante: ");
+        scanCadRest.nextLine(); // Gambiarra
+        String nome = scanCadRest.nextLine();
+
+        System.out.println("Insira o cnpj: ");
+        String cnpj = scanCadRest.nextLine();
+        // System.out.println("Insira os horários de funcionamento: ");
+
+        int abertura = getTempoAbertura();
+        int fechamento = getTempoFechamento();
+
+        System.out.println("Insira seu endereço: ");
+        Endereco enderecoComp = getEndereco();
+        HashMap<String, Integer> menu = getMenu();
+
+        Estabelecimento estabelecimento = new Estabelecimento(
+                nome,
+                cnpj,
+                abertura,
+                fechamento,
+                menu);
+        estabelecimento.addEndereco(enderecoComp);
+        return estabelecimento;
     }
 
     private static Cadastro getCadastro() {
