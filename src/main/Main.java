@@ -36,23 +36,7 @@ public class Main {
 
             switch (escolha) {
                 case 1:
-                    System.out.print("Digite seu Login: ");
-                    String entradaLogin = scan.next();
-                    System.out.print("Digite sua Senha: ");
-                    String entradaSenha = scan.next();
-
-                    for (Cliente cliente : clientes) {
-                        Cadastro cadastro = cliente.getCadastro();
-                        if (cadastro.getLogin().equals(entradaLogin)
-                                &&
-                                cadastro.getSenha().equals(entradaSenha)) {
-                            controlador = false;
-                            System.out.println();
-                            break;
-                        } else {
-                            continue;
-                        }
-                    }
+                    controlador = (login(clientes) != null);
                     System.out.println(
                             controlador == false
                                     ? "Login realizado com sucesso!\n"
@@ -249,5 +233,30 @@ public class Main {
         } else {
             return false;
         }
+    }
+
+    private static Cliente login(ArrayList<Cliente> clientes) {
+        Scanner scan = new Scanner(System.in);
+        Cliente outCliente = null;
+
+        System.out.print("Digite seu Login: ");
+        String entradaLogin = scan.next();
+        System.out.print("Digite sua Senha: ");
+        String entradaSenha = scan.next();
+
+        for (Cliente cliente : clientes) {
+            Cadastro cadastro = cliente.getCadastro();
+            if (cadastro.getLogin().equals(entradaLogin)
+                    &&
+                    cadastro.getSenha().equals(entradaSenha)) {
+                System.out.println();
+                outCliente = cliente;
+                break;
+            } else {
+                continue;
+            }
+        }
+        return outCliente;
+
     }
 }
