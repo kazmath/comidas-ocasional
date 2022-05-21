@@ -36,7 +36,12 @@ public class Main {
 
             switch (escolha) {
                 case 1:
-                    controlador = (login(clientes) != null);
+                    System.out.print("Digite seu Login: ");
+                    String entradaLogin = scan.next();
+                    System.out.print("Digite sua Senha: ");
+                    String entradaSenha = scan.next();
+
+                    controlador = (login(entradaLogin, entradaSenha, clientes) == null);
                     System.out.println(
                             controlador == false
                                     ? "Login realizado com sucesso!\n"
@@ -44,14 +49,38 @@ public class Main {
 
                     break;
                 case 2:
-                
-                    Cliente cliente = cadCliente();
+                    Cadastro cadastro = getCadastro();
+                    Endereco enderecoUser = getEndereco();
+
+                    Cliente cliente = cadCliente(cadastro, enderecoUser);
                     clientes.add(cliente);
 
                     break;
                 case 3:
+                    System.out.println("Insira o nome do restaurante: ");
+                    scan.nextLine(); // Gambiarra
+                    String nome = scan.nextLine();
+            
+                    System.out.println("Insira o cnpj: ");
+                    String cnpj = scan.nextLine();
+                    // System.out.println("Insira os horários de funcionamento: ");
+            
+                    int abertura = getTempoAbertura();
+                    int fechamento = getTempoFechamento();
+            
+                    System.out.println("Insira seu endereço: ");
+                    Endereco enderecoComp = getEndereco();
+                    HashMap<String, Integer> menu = getMenu();
 
-                    Estabelecimento estabelecimento = cadRestaurante();
+
+                    Estabelecimento estabelecimento = cadRestaurante(
+                        nome,
+                        cnpj,
+                        abertura,
+                        fechamento,
+                        menu,
+                        enderecoComp
+                    );
                     estabelecimentos.add(estabelecimento);
 
                     break;
@@ -66,9 +95,7 @@ public class Main {
 
     }
 
-    private static Cliente cadCliente() {
-        Cadastro cadastro = getCadastro();
-        Endereco enderecoUser = getEndereco();
+    private static Cliente cadCliente(Cadastro cadastro, Endereco enderecoUser) {
         Cliente cliente = new Cliente(cadastro);
         cliente.addEndereco(enderecoUser);
         System.out.println("Cadastro realizado com sucesso!\n\n");
@@ -76,23 +103,14 @@ public class Main {
         return cliente;
     }
     
-    private static Estabelecimento cadRestaurante() {
-        Scanner scanCadRest = new Scanner(System.in);
-        System.out.println("Insira o nome do restaurante: ");
-        scanCadRest.nextLine(); // Gambiarra
-        String nome = scanCadRest.nextLine();
-
-        System.out.println("Insira o cnpj: ");
-        String cnpj = scanCadRest.nextLine();
-        // System.out.println("Insira os horários de funcionamento: ");
-
-        int abertura = getTempoAbertura();
-        int fechamento = getTempoFechamento();
-
-        System.out.println("Insira seu endereço: ");
-        Endereco enderecoComp = getEndereco();
-        HashMap<String, Integer> menu = getMenu();
-
+    private static Estabelecimento cadRestaurante(
+        String nome,
+        String cnpj,
+        int abertura,
+        int fechamento,
+        HashMap<String, Integer> menu,
+        Endereco enderecoComp
+    ) {
         Estabelecimento estabelecimento = new Estabelecimento(
                 nome,
                 cnpj,
@@ -250,20 +268,15 @@ public class Main {
         }
     }
 
-    private static Cliente login(ArrayList<Cliente> clientes) {
+    private static Cliente login(String login, String senha, ArrayList<Cliente> clientes) {
         Scanner scan = new Scanner(System.in);
         Cliente outCliente = null;
 
-        System.out.print("Digite seu Login: ");
-        String entradaLogin = scan.next();
-        System.out.print("Digite sua Senha: ");
-        String entradaSenha = scan.next();
-
         for (Cliente cliente : clientes) {
             Cadastro cadastro = cliente.getCadastro();
-            if (cadastro.getLogin().equals(entradaLogin)
+            if (cadastro.getLogin().equals(login)
                     &&
-                    cadastro.getSenha().equals(entradaSenha)) {
+                    cadastro.getSenha().equals(senha)) {
                 System.out.println();
                 outCliente = cliente;
                 break;
