@@ -1,20 +1,20 @@
-/* Comidas_Ocasional_atualizado: */
+Create database Comidas_Ocasional;
 
 CREATE TABLE Cadastro (
-    Login VARCHAR,
-    Email VARCHAR,
-    Senha VARCHAR,
+    Login VARCHAR(255),
+    Email VARCHAR(255),
+    Senha VARCHAR(255),
     Cod INT PRIMARY KEY,
-    fk_Cliente_CPF VARCHAR,
+    fk_Cliente_CPF int,
     fk_Cliente_Cod INT,
-    fk_Cliente_CNPJ VARCHAR,
-    fk_Estabelecimento_CNPJ VARCHAR,
+    fk_Cliente_CNPJ VARCHAR(11),
+    fk_Estabelecimento_CNPJ VARCHAR(11),
     fk_Estabelecimento_Cod INT
 );
 
 CREATE TABLE Estabelecimento (
-    Nome VARCHAR,
-    CNPJ VARCHAR,
+    Nome VARCHAR(11),
+    CNPJ VARCHAR(11),
     Horario INT,
     Cod INT,
     Aberto BINARY,
@@ -23,21 +23,21 @@ CREATE TABLE Estabelecimento (
 
 CREATE TABLE Cardapio (
     Tamanho INT,
-    fk_Estabelecimento_CNPJ VARCHAR,
+    fk_Estabelecimento_CNPJ VARCHAR(11),
     fk_Estabelecimento_Cod INT
 );
 
 CREATE TABLE Prato (
-    Nome VARCHAR,
+    Nome VARCHAR(255),
     Preco INT,
     Id INT PRIMARY KEY
 );
 
 CREATE TABLE Endereco (
-    Bairro VARCHAR,
-    NumCasa VARCHAR,
-    Cidade VARCHAR,
-    Rua VARCHAR,
+    Bairro VARCHAR(255),
+    NumCasa VARCHAR(255),
+    Cidade VARCHAR(255),
+    Rua VARCHAR(255),
     Cod INT PRIMARY KEY
 );
 
@@ -47,8 +47,7 @@ CREATE TABLE Pedido (
 );
 
 CREATE TABLE Carrinho_Aplicativo (
-    Quantidade_Item INT,
-    Database INT
+    Quantidade_Item INT
 );
 
 CREATE TABLE Pagamento (
@@ -57,39 +56,37 @@ CREATE TABLE Pagamento (
 );
 
 CREATE TABLE Possui (
-    fk_Estabelecimento_CNPJ VARCHAR,
+    fk_Estabelecimento_CNPJ VARCHAR(255),
     fk_Estabelecimento_Cod INT,
     fk_Endereco_Cod INT
 );
 
 CREATE TABLE Possui (
-    fk_Cliente_CPF VARCHAR,
+    fk_Cliente_CPF VARCHAR(255),
     fk_Cliente_Cod INT,
-    fk_Cliente_CNPJ VARCHAR,
+    fk_Cliente_CNPJ VARCHAR(11),
     fk_Endereco_Cod INT
 );
 
 CREATE TABLE Faz (
-    fk_Cliente_CPF VARCHAR,
+    fk_Cliente_CPF VARCHAR(11),
     fk_Cliente_Cod INT,
-    fk_Cliente_CNPJ VARCHAR
+    fk_Cliente_CNPJ VARCHAR(11)
 );
 
 CREATE TABLE Tem (
     fk_Prato_Id INT
 );
 
-CREATE TABLE Relacionamento_1 (
-);
 
 CREATE TABLE Cliente_PF (
-    Nome VARCHAR,
-    CPF VARCHAR PRIMARY KEY
+    Nome VARCHAR(255),
+    CPF VARCHAR(11) PRIMARY KEY
 );
 
 CREATE TABLE Cliente_PJ (
-    Nome VARCHAR,
-    CPF VARCHAR PRIMARY KEY
+    Nome VARCHAR(255),
+    CPF VARCHAR(11) PRIMARY KEY
 );
  
 ALTER TABLE Cadastro ADD CONSTRAINT FK_Cadastro_2
