@@ -1,44 +1,44 @@
 Create database Comidas_Ocasional;
 
 CREATE TABLE Cadastro (
-    Login VARCHAR(255),
-    Email VARCHAR(255),
-    Senha VARCHAR(255),
-    Cod INT PRIMARY KEY,
-    fk_Cliente_CPF int,
-    fk_Cliente_Cod INT,
-    fk_Cliente_CNPJ VARCHAR(11),
-    fk_Estabelecimento_CNPJ VARCHAR(11),
-    fk_Estabelecimento_Cod INT
+    Login VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Senha VARCHAR(255) NOT NULL,
+    CodCadastro INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    fk_Cliente_CPF INT NOT NULL,
+    fk_Cliente_Cod INT NOT NULL,
+    fk_Cliente_CNPJ VARCHAR(11) NOT NULL,
+    fk_Estabelecimento_CNPJ VARCHAR(11) NOT NULL,
+    fk_Estabelecimento_Cod INT NOT NULL
 );
 
 CREATE TABLE Estabelecimento (
-    Nome VARCHAR(11),
-    CNPJ VARCHAR(11),
-    Horario INT,
-    Cod INT,
-    Aberto BINARY,
+    Nome VARCHAR(11) NOT NULL,
+    CNPJ VARCHAR(11) NOT NULL,
+    Horario INT NOT NULL,
+    CodEstabelecimento INT NOT NULL AUTO_INCREMENT,
+    Aberto BINARY NOT NULL,
     PRIMARY KEY (CNPJ, Cod)
 );
 
 CREATE TABLE Cardapio (
     Tamanho INT,
-    fk_Estabelecimento_CNPJ VARCHAR(11),
-    fk_Estabelecimento_Cod INT
+    fk_Estabelecimento_CNPJ VARCHAR(11) NOT NULL,
+    fk_Estabelecimento_Cod INT NOT NULL
 );
 
 CREATE TABLE Prato (
-    Nome VARCHAR(255),
-    Preco INT,
-    Id INT PRIMARY KEY
+    Nome VARCHAR(255) NOT NULL,
+    Preco INT NOT NULL,
+    Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 );
 
 CREATE TABLE Endereco (
-    Bairro VARCHAR(255),
-    NumCasa VARCHAR(255),
-    Cidade VARCHAR(255),
-    Rua VARCHAR(255),
-    Cod INT PRIMARY KEY
+    Bairro VARCHAR(255) NOT NULL,
+    NumCasa VARCHAR(255) NOT NULL,
+    Cidade VARCHAR(255) NOT NULL,
+    Rua VARCHAR(255) NOT NULL,
+    CodEndereco INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 );
 
 CREATE TABLE Pedido (
@@ -56,8 +56,8 @@ CREATE TABLE Pagamento (
 );
 
 CREATE TABLE Possui (
-    fk_Estabelecimento_CNPJ VARCHAR(255),
-    fk_Estabelecimento_Cod INT,
+    fk_Estabelecimento_CNPJ VARCHAR(255) NOT NULL,
+    fk_Estabelecimento_Cod INT NOT NULL,
     fk_Endereco_Cod INT
 );
 
