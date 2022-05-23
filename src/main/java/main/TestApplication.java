@@ -10,7 +10,6 @@ public class TestApplication {
 	static final String QUERY = "SELECT id, first, last, age FROM Employees";
  
 	public static void main(String[] args) throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
 	// Open a connection
 	   try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		  Statement stmt = conn.createStatement();
