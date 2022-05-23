@@ -27,11 +27,11 @@ public class Main {
             System.out.println("""
                     =========================================
                     1-Login
-                    2-Cadastro de Usu·rio
+                    2-Cadastro de Usu√°rio
                     3-Cadastro de Restaurante
                     =========================================
                     """);
-            System.out.println("Escolha as opÁıes:");
+            System.out.println("Escolha as op√ß√µes:");
             escolha = scan.nextInt();
 
             switch (escolha) {
@@ -45,7 +45,7 @@ public class Main {
                     System.out.println(
                             controlador == false
                                     ? "Login realizado com sucesso!\n"
-                                    : "ERRO: Credenciais n„o registradas. Cadastre-se primeiro.\n");
+                                    : "ERRO: Credenciais n√£o registradas. Cadastre-se primeiro.\n");
 
                     break;
                 case 2:
@@ -63,12 +63,12 @@ public class Main {
             
                     System.out.println("Insira o cnpj: ");
                     String cnpj = scan.nextLine();
-                    // System.out.println("Insira os hor·rios de funcionamento: ");
+                    // System.out.println("Insira os hor√°rios de funcionamento: ");
             
                     int abertura = getTempoAbertura();
                     int fechamento = getTempoFechamento();
             
-                    System.out.println("Insira seu endereÁo: ");
+                    System.out.println("Insira seu endere√ßo: ");
                     Endereco enderecoComp = getEndereco();
                     HashMap<String, Integer> menu = getMenu();
 
@@ -86,7 +86,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Erro: SeleÁ„o inv·lida.");
+                    System.out.println("Erro: Sele√ß√£o inv√°lida.");
                     break;
 
             }
@@ -124,7 +124,7 @@ public class Main {
     private static Cadastro getCadastro() {
         Scanner scanCadastro = new Scanner(System.in);
 
-        System.out.println("Digite as informaÁıes");
+        System.out.println("Digite as informa√ß√µes");
         System.out.print("Login: ");
         String login = scanCadastro.next();
 
@@ -142,11 +142,11 @@ public class Main {
 
     private static Endereco getEndereco() {
         Scanner scanEndereco = new Scanner(System.in);
-        System.out.println("Digite as informaÁıes");
+        System.out.println("Digite as informa√ß√µes");
         System.out.print("Rua: ");
         String Rua = scanEndereco.nextLine();
 
-        System.out.print("N˙mero da Casa: ");
+        System.out.print("N√∫mero da Casa: ");
         String numCasa = scanEndereco.nextLine();
 
         System.out.print("Bairro: ");
@@ -167,13 +167,13 @@ public class Main {
 
         do {
             System.out.print(
-                    "\u001B[32mDigite a HORA de Abertura do seu estabelecimento\n(hor·rios v·lidos s„o das 0 as 23)\n<N√O DIGITE OS MINUTOS>\n> \u001B[0m");
+                    "\u001B[32mDigite a HORA de Abertura do seu estabelecimento\n(hor√°rios v√°lidos s√£o das 0 as 23)\n<N√ÉO DIGITE OS MINUTOS>\n> \u001B[0m");
             horaAbertura = scanTempoAb.nextInt();
         } while (horaAbertura < 0 || horaAbertura > 23);
 
         do {
             System.out.print(
-                    "\u001B[32mDigite os MINUTOS de Abertura do seu estabelecimento\n(hor·rios v·lidos s„o de 0 a 59)\n<N√O DIGITE AS HORAS>\n> \u001B[0m");
+                    "\u001B[32mDigite os MINUTOS de Abertura do seu estabelecimento\n(hor√°rios v√°lidos s√£o de 0 a 59)\n<N√ÉO DIGITE AS HORAS>\n> \u001B[0m");
             minAbertura = scanTempoAb.nextInt();
         } while (minAbertura < 0 || minAbertura > 59);
 
@@ -190,13 +190,13 @@ public class Main {
 
         do {
             System.out.print(
-                    "\u001B[31mDigite a HORA de Fechamento do seu estabelecimento\n(hor·rios v·lidos s„o das 0 as 23)\n<N√O DIGITE OS MINUTOS>\n> \u001B[0m");
+                    "\u001B[31mDigite a HORA de Fechamento do seu estabelecimento\n(hor√°rios v√°lidos s√£o das 0 as 23)\n<N√ÉO DIGITE OS MINUTOS>\n> \u001B[0m");
             horaFechamento = scanTempoFec.nextInt();
         } while (horaFechamento < 0 || horaFechamento > 23);
 
         do {
             System.out.print(
-                    "\u001B[31mDigite os MINUTOS de Fechamento do seu estabelecimento\n(hor·rios v·lidos s„o de 0 a 59)\n<N√O DIGITE AS HORAS>\n> \u001B[0m");
+                    "\u001B[31mDigite os MINUTOS de Fechamento do seu estabelecimento\n(hor√°rios v√°lidos s√£o de 0 a 59)\n<N√ÉO DIGITE AS HORAS>\n> \u001B[0m");
             minFechamento = scanTempoFec.nextInt();
         } while (minFechamento < 0 || minFechamento > 59);
 
@@ -218,19 +218,19 @@ public class Main {
 
                     1- Adicionar prato
                     2- Remover prato
-                    3- Confirmar seleÁ„o
+                    3- Confirmar sele√ß√£o
                     _________________________________________________
 
                     """);
-            System.out.println("Escolha as opÁıes:");
+            System.out.println("Escolha as op√ß√µes:");
             escolha = scanMenu.nextInt();
 
             switch (escolha) {
                 case 1:
-                    System.out.println("Digite o nome do prato adicion·-lo.");
+                    System.out.println("Digite o nome do prato adicion√°-lo.");
                     scanMenu.nextLine(); // Gambiarras
                     String prato = scanMenu.nextLine();
-                    System.out.println("Digite o valor do prato adicion·-lo.");
+                    System.out.println("Digite o valor do prato adicion√°-lo.");
                     int valor = (int) (scanMenu.nextFloat() * 100);
                     valor = valor * 100;
                     menu.put(prato, valor);
@@ -238,12 +238,12 @@ public class Main {
 
                 case 2:
                     if (menu.size() > 0) {
-                        System.out.println("Digite o prato para removÍ-lo.");
+                        System.out.println("Digite o prato para remov√™-lo.");
                         scanMenu.nextLine(); // Gambiarras
                         String nome = scanMenu.nextLine();
                         menu.remove(nome);
                     } else {
-                        System.out.println("N„o h· nenhum item registrado no menu.");
+                        System.out.println("N√£o h√° nenhum item registrado no menu.");
                     }
                     break;
                 case 3:
