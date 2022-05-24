@@ -5,6 +5,15 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 import entidades.Cadastro;
 import entidades.Cliente;
 import entidades.Endereco;
@@ -14,7 +23,28 @@ import servicos.Servico;
 public class Main {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        final String USER = "root";
+        final String PASSWORD = "root";
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost", USER, PASSWORD);
+        Statement stmt = conn.createStatement();
+        String sqlFile = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("src/main/Database.sql")));) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // stmt.addBatch(line);
+                sqlFile += line;
+                // System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();;
+        }
+        // int[] result = stmt.executeBatch();
+        for (String statement : sqlFile.split(";")) {
+            stmt.addBatch(statement);
+        }
+        stmt.executeBatch();
+        System.exit(0);
 
         Scanner scan = new Scanner(System.in);
         int escolha;
