@@ -1,10 +1,10 @@
-CREATE DATABASE Comidas_Ocasional;
+CREATE DATABASE IF NOT EXISTS Comidas_Ocasional;
 
 USE Comidas_Ocasional;
 
 CREATE TABLE Cadastro (
     CodCadastro INT NOT NULL AUTO_INCREMENT,
-    LOGIN VARCHAR(255) NOT NULL,
+    Login VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Senha VARCHAR(255) NOT NULL,
     PRIMARY KEY (CodCadastro)

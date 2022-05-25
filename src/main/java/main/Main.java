@@ -8,7 +8,6 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,27 +23,23 @@ public class Main {
     ArrayList<Servico> pedidos = new ArrayList<Servico>();
 
     public static void main(String[] args) throws Exception {
-        final String USER = "root";
-        final String PASSWORD = "root";
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost", USER, PASSWORD);
+
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost", "root", "root");
         Statement stmt = conn.createStatement();
-        String sqlFile = "";
+        int[] SQLResult;
         try (BufferedReader br = new BufferedReader(new FileReader(new File("src/main/Database.sql")));) {
+            String sqlFile = "";
             String line;
             while ((line = br.readLine()) != null) {
                 // stmt.addBatch(line);
                 sqlFile += line;
                 // System.out.println(line);
             }
-        } catch (IOException e) {
-            e.printStackTrace();;
-        }
-        // int[] result = stmt.executeBatch();
-        for (String statement : sqlFile.split(";")) {
-            stmt.addBatch(statement);
-        }
-        stmt.executeBatch();
-        System.exit(0);
+            for (String statement : sqlFile.split(";")) {
+                stmt.addBatch(statement);
+            }
+        } finally {}
+        SQLResult = stmt.executeBatch();
 
         Scanner scan = new Scanner(System.in);
         int escolha;
