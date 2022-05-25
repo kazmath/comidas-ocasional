@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Endereco (
 
 CREATE TABLE IF NOT EXISTS Pagamento (
     Pagamento_PK INT NOT NULL,
-    Pagamento INT,
+    Pagamento VARCHAR(255) NOT NULL,
     PRIMARY KEY (Pagamento_PK)
 );
  
