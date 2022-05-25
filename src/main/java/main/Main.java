@@ -1,7 +1,7 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+// import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -38,7 +38,7 @@ public class Main {
             for (String statement : sqlFile.split(";")) {
                 stmt.addBatch(statement);
             }
-        } finally {}
+        }
         SQLResult = stmt.executeBatch();
 
         Scanner scan = new Scanner(System.in);
@@ -285,18 +285,18 @@ public class Main {
         return menu;
     }
 
-    private static boolean checkTempo(int abertura, int fechamento) {
-        Calendar hoje = Calendar.getInstance();
-        int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
-        int minAtual = hoje.get(Calendar.MINUTE);
-        int tempAtual = minAtual + (horaAtual * 60);
+    // private static boolean checkTempo(int abertura, int fechamento) {
+    //     Calendar hoje = Calendar.getInstance();
+    //     int horaAtual = hoje.get(Calendar.HOUR_OF_DAY);
+    //     int minAtual = hoje.get(Calendar.MINUTE);
+    //     int tempAtual = minAtual + (horaAtual * 60);
 
-        if (tempAtual > abertura && tempAtual < fechamento) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //     if (tempAtual > abertura && tempAtual < fechamento) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     private static Cliente login(String login, String senha, ArrayList<Cliente> clientes) {
         try (Scanner scan = new Scanner(System.in)){

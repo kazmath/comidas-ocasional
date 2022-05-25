@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS Comidas_Ocasional;
 
 USE Comidas_Ocasional;
 
-CREATE TABLE Cadastro (
+CREATE TABLE IF NOT EXISTS Cadastro (
     CodCadastro INT NOT NULL AUTO_INCREMENT,
     Login VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE Cadastro (
     PRIMARY KEY (CodCadastro)
 );
 
-CREATE TABLE Prato (
+CREATE TABLE IF NOT EXISTS Prato (
     Id INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(255) NOT NULL,
     Preco INT NOT NULL,
     PRIMARY KEY (Id)
 );
 
-CREATE TABLE Endereco (
+CREATE TABLE IF NOT EXISTS Endereco (
     CodEndereco INT NOT NULL AUTO_INCREMENT,
     Bairro VARCHAR(255) NOT NULL,
     NumCasa VARCHAR(255) NOT NULL,
@@ -26,13 +26,13 @@ CREATE TABLE Endereco (
     PRIMARY KEY (CodEndereco)
 );
 
-CREATE TABLE Pagamento (
+CREATE TABLE IF NOT EXISTS Pagamento (
     Pagamento_PK INT NOT NULL,
     Pagamento INT,
     PRIMARY KEY (Pagamento_PK)
 );
  
-CREATE TABLE Estabelecimento (
+CREATE TABLE IF NOT EXISTS Estabelecimento (
     CodEstabelecimento INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(11) NOT NULL,
     CNPJ VARCHAR(11) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Estabelecimento (
     PRIMARY KEY (CodEstabelecimento)
 );
 
-CREATE TABLE Cliente_PF (
+CREATE TABLE IF NOT EXISTS Cliente_PF (
     Nome VARCHAR(255),
     CPF VARCHAR(11),
     CodEndereco INT NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Cliente_PF (
     PRIMARY KEY (CPF)
 );
 
-CREATE TABLE Cliente_PJ (
+CREATE TABLE IF NOT EXISTS Cliente_PJ (
     Nome VARCHAR(255),
     CNPJ VARCHAR(11),
     CodEndereco INT NOT NULL,
@@ -59,20 +59,20 @@ CREATE TABLE Cliente_PJ (
     PRIMARY KEY (CNPJ)
 );
 
-CREATE TABLE Cardapio (
+CREATE TABLE IF NOT EXISTS Cardapio (
     fk_Estabelecimento_Cod INT NOT NULL,
     Prato_Id INT NOT NULL,
     FOREIGN KEY (fk_Estabelecimento_Cod) REFERENCES Estabelecimento (CodEstabelecimento),
     FOREIGN KEY (Prato_Id) REFERENCES Prato (Id)
 );
 
-CREATE TABLE Pedido (
+CREATE TABLE IF NOT EXISTS Pedido (
     FK_Pagamento INT,
     Retira_Entrega BINARY,
     FOREIGN KEY (FK_Pagamento) REFERENCES Pagamento (Pagamento_PK)
 );
 
-CREATE TABLE Carrinho_Aplicativo (
+CREATE TABLE IF NOT EXISTS Carrinho_Aplicativo (
     Quantidade_Item INT,
     Prato_Id INT,
     FOREIGN KEY (Prato_Id) REFERENCES Prato(Id)
