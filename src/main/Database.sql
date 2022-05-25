@@ -44,16 +44,14 @@ CREATE TABLE Endereco (
 
 CREATE TABLE Pedido (
     fk_Pagamento_Pagamento_PK INT,
-    Retira_Entrega BINARY
+    Retira_Entrega BINARY,
+    FOREIGN KEY (fk_Pagamento_Pagamento_PK) REFERENCES Pagamento (Pagamento_PK)
 );
 
-ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_1
-    FOREIGN KEY (fk_Pagamento_Pagamento_PK)
-    REFERENCES Pagamento (Pagamento_PK)
-    ON DELETE NO ACTION;
-
 CREATE TABLE Carrinho_Aplicativo (
-    Quantidade_Item INT
+    Quantidade_Item INT,
+    Prato_Id INT,
+    FOREIGN KEY (Prato_Id) REFERENCES Prato(Id)
 );
 
 CREATE TABLE Pagamento (
