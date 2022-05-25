@@ -40,7 +40,7 @@ CREATE TABLE Estabelecimento (
     Aberto BINARY NOT NULL,
     CodEndereco INT NOT NULL,
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
-    PRIMARY KEY (CodEstabelecimento),
+    PRIMARY KEY (CodEstabelecimento)
 );
 
 CREATE TABLE Cliente_PF (
@@ -48,7 +48,7 @@ CREATE TABLE Cliente_PF (
     CPF VARCHAR(11),
     CodEndereco INT NOT NULL,
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
-    PRIMARY KEY (Pagamento_PK)
+    PRIMARY KEY (CPF)
 );
 
 CREATE TABLE Cliente_PJ (
