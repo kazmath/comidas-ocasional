@@ -8,6 +8,7 @@ public class Cliente {
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Cliente(String nome, Cadastro cadastro) {
+        this.nome = nome;
         this.cadastro = cadastro;
     }
 

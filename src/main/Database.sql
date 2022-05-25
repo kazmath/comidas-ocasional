@@ -56,15 +56,19 @@ CREATE TABLE IF NOT EXISTS Cliente_PJ (
     Nome VARCHAR(255) NOT NULL,
     CNPJ VARCHAR(11) NOT NULL,
     CodEndereco INT NOT NULL,
+    CodCadastro INT NOT NULL,
+    FOREIGN KEY (CodCadastro) REFERENCES Cadastro(CodCadastro),
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
     PRIMARY KEY (CNPJ)
 );
 
 CREATE TABLE IF NOT EXISTS Cardapio (
+    CodCardapio INT NOT NULL AUTO_INCREMENT,
     fk_Estabelecimento_Cod INT NOT NULL,
     Prato_Id INT NOT NULL,
     FOREIGN KEY (fk_Estabelecimento_Cod) REFERENCES Estabelecimento (CodEstabelecimento),
-    FOREIGN KEY (Prato_Id) REFERENCES Prato (Id)
+    FOREIGN KEY (Prato_Id) REFERENCES Prato (Id),
+    PRIMARY KEY (CodCardapio)
 );
 
 CREATE TABLE IF NOT EXISTS Pedido (

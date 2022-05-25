@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.mysql.cj.protocol.Resultset;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.sql.Array;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import entidades.Cadastro;
@@ -98,9 +101,11 @@ public class Main {
                             "'" + enderecoUser.getRua() + "'" +
                         ")"
                     );
-                    int CodEnderecoCli = stmt.executeQuery(
+                    ResultSet rsEndereco = stmt.executeQuery(
                         "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1"
-                    ).findColumn("CodEndereco");
+                    );
+                    rsEndereco.next();
+                    int CodEnderecoCli = rsEndereco.getInt("CodEndereco");
 
                     stmt.execute(
                         "INSERT INTO Cadastro(Login, Email, Senha) VALUES (" +
@@ -109,9 +114,11 @@ public class Main {
                             "'" + cadastro.getSenha() + "'" +
                         ")"
                     );
-                    int codCadastroCli = stmt.executeQuery(
+                    ResultSet rsCadastro = stmt.executeQuery(
                         "SELECT * FROM Cadastro ORDER BY CodCadastro DESC LIMIT 1"
-                    ).findColumn("CodCadastro");
+                    );
+                    rsCadastro.next();
+                    int codCadastroCli = rsCadastro.getInt("CodCadastro");
                     
                     Cliente cliente = cadCliente(nome, cadastro, enderecoUser);
                     stmt.execute(
@@ -174,18 +181,20 @@ public class Main {
                     ResultSet RsEnderecoEst = stmt.executeQuery(
                         "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1"
                     );
-                    
+                    RsEnderecoEst.next();
                     stmt.execute(
                         "INSERT INTO Estabelecimento(Nome,CNPJ,Aberto,CodEndereco) VALUES (" +
                             "'" + estabelecimento.getNome() + "'" + ", " +
                             "'" + estabelecimento.getCnpj() + "'" + ", " +
                             (estabelecimento.getAberto() ? 1 : 0) + ", " +
-                            RsEnderecoEst.findColumn("CodEndereco") +
+                            RsEnderecoEst.getString("CodEndereco") +
                         ")"
                     );
-                    int CodEstabelecimento = stmt.executeQuery(
+                    ResultSet rsEstabelecimento = stmt.executeQuery(
                         "SELECT * FROM Estabelecimento ORDER BY CodEstabelecimento DESC LIMIT 1"
-                    ).findColumn("CodEstabelecimento");
+                    );
+                    rsEstabelecimento.next();
+                    int CodEstabelecimento = rsEstabelecimento.getInt("CodEstabelecimento");
                     
                     for (String nomePrato : menu.keySet()) {
                         stmt.execute(
@@ -197,11 +206,11 @@ public class Main {
                         ResultSet RsPrato = stmt.executeQuery(
                             "SELECT * FROM Prato ORDER BY Id DESC LIMIT 1"
                         );
-                        
+                        RsPrato.next();
                         stmt.execute(
                             "INSERT INTO Cardapio(fk_Estabelecimento_Cod, Prato_Id) VALUES (" +
                                 CodEstabelecimento + ", " +
-                                RsPrato.findColumn("Id") + 
+                                RsPrato.getString("Id") + 
                             ")"
                         );
                     }
@@ -215,19 +224,85 @@ public class Main {
             }
 
         }
-        if (codLogin != null) {
-            ResultSet rs = stmt.executeQuery(
-                "SELECT Nome FROM Estabelecimento " +
-                "WHERE Aberto=1"
-            );
 
-            // do {
-            // } while (rs.next());
-            while (rs.next()) {
-                System.out.print(rs.getString("Nome")+", ");
+        if (codLogin != null) {
+            HashMap<String,String> estHashMap = new HashMap<String,String>();
+
+            try (
+                ResultSet rs = stmt.executeQuery(
+                    "SELECT CodEstabelecimento,Nome FROM Estabelecimento " +
+                    "WHERE Aberto=1"
+                );
+            ) {
+                System.out.println("Selecione o estabelecimento:");
+                while (rs.next()) {
+                    estHashMap.put(
+                        rs.getString("CodEstabelecimento"),
+                        rs.getString("Nome")
+                    );
+                }                    
+            }
+            
+            
+
+            while (true) {
+                for (String est : estHashMap.keySet()) {
+                    System.out.println(est + " " + estHashMap.get(est));
+                }
+                System.out.print("\n> ");
+                String selection = scan.next();
+                scan.nextLine();
+                String CodEstabelecimento;
+
+                try (
+                    ResultSet rs = stmt.executeQuery(
+                        "SELECT * FROM Estabelecimento " +
+                        "WHERE CodEstabelecimento=" + selection
+                    );
+                ) {
+                    rs.next();
+                    CodEstabelecimento = rs.getString("CodEstabelecimento");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    continue;
+                }
+                
+                ResultSet rsCardapio = stmt.executeQuery(
+                    "SELECT p.Id,p.Nome,p.Preco FROM Cardapio AS c, Prato AS p, Estabelecimento as e " +
+                    "WHERE c.Prato_Id=p.Id AND " +
+                    "c.fk_Estabelecimento_Cod=e.CodEstabelecimento AND " +
+                    "e.CodEstabelecimento=" + CodEstabelecimento
+                );    
+                System.out.println("\nFaça seu pedido:");
+                boolean concluido = true;
+                
+
+                HashMap<Integer,String[]> cardHashMap = new HashMap<Integer,String[]>();
+                while (rsCardapio.next()) {
+                    String prato[] = {
+                        rsCardapio.getString("Nome"),
+                        String.valueOf(rsCardapio.getInt("Preco") / 100)
+                    };
+                    cardHashMap.put(rsCardapio.getInt("Id"), prato);
+                }
+                while (concluido) {
+                    for (Integer entry : cardHashMap.keySet()) {
+                        System.out.println(
+                            "(" + String.valueOf(entry) + ")" +
+                            " " + cardHashMap.get(entry)[0] +
+                            ": R$" + cardHashMap.get(entry)[1]
+                        );
+                    }
+                    System.out.print("Digite o código do prato: ");
+                    String addPedido = scan.next();
+                    System.out.println();
+                    // TODO: Continuar
+                }
+
                 
             }
-            System.out.println();
+        } else if (codLoginEst != null) {
+
         }
 
     }
@@ -320,7 +395,6 @@ public class Main {
                     String prato = scanMenu.nextLine();
                     System.out.println("Digite o valor do prato adicioná-lo.");
                     int valor = (int) (scanMenu.nextFloat() * 100);
-                    valor = valor * 100;
                     menu.put(prato, valor);
                     break;
 
