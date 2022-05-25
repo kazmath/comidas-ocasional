@@ -13,6 +13,14 @@ public class Cadastro {
         this.senha = senha;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getEmail() {
         return this.email;
     }

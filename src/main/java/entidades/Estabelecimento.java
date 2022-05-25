@@ -6,21 +6,18 @@ import java.util.ArrayList;
 public class Estabelecimento {
     String nome;
     String cnpj;
-    int abertura;
-    int fechamento;
+    boolean aberto;
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
     HashMap<String, Integer> menu;
 
     public Estabelecimento(
             String nome,
             String cnpj,
-            int abertura,
-            int fechamento,
+            boolean aberto,
             HashMap<String, Integer> menu) {
         this.nome = nome;
         this.cnpj = cnpj;
-        this.abertura = abertura;
-        this.fechamento = fechamento;
+        this.aberto = aberto;
         this.menu = menu;
     }
 
@@ -32,20 +29,12 @@ public class Estabelecimento {
         this.cnpj = cnpj;
     }
 
-    public int getAbertura() {
-        return this.abertura;
+    public boolean getAberto() {
+        return this.aberto;
     }
 
-    public void setAbertura(int abertura) {
-        this.abertura = abertura;
-    }
-
-    public int getFechamento() {
-        return this.fechamento;
-    }
-
-    public void setFechamento(int fechamento) {
-        this.fechamento = fechamento;
+    public void setAberto(boolean aberto) {
+        this.aberto = aberto;
     }
 
     public Endereco getEndereco(int index) {

@@ -3,10 +3,11 @@ package entidades;
 import java.util.ArrayList;
 
 public class Cliente {
+    String nome;
     Cadastro cadastro;
     ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
-    public Cliente(Cadastro cadastro) {
+    public Cliente(String nome, Cadastro cadastro) {
         this.cadastro = cadastro;
     }
 
@@ -32,6 +33,14 @@ public class Cliente {
 
     public void deleteEndereco(int index) {
         this.enderecos.remove(index);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

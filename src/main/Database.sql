@@ -34,9 +34,8 @@ CREATE TABLE IF NOT EXISTS Pagamento (
  
 CREATE TABLE IF NOT EXISTS Estabelecimento (
     CodEstabelecimento INT NOT NULL AUTO_INCREMENT,
-    Nome VARCHAR(11) NOT NULL,
+    Nome VARCHAR(255) NOT NULL,
     CNPJ VARCHAR(11) NOT NULL,
-    Horario INT NOT NULL,
     Aberto BINARY NOT NULL,
     CodEndereco INT NOT NULL,
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
@@ -44,16 +43,18 @@ CREATE TABLE IF NOT EXISTS Estabelecimento (
 );
 
 CREATE TABLE IF NOT EXISTS Cliente_PF (
-    Nome VARCHAR(255),
-    CPF VARCHAR(11),
+    Nome VARCHAR(255) NOT NULL,
+    CPF VARCHAR(11) NOT NULL,
     CodEndereco INT NOT NULL,
+    CodCadastro INT NOT NULL,
+    FOREIGN KEY (CodCadastro) REFERENCES Cadastro(CodCadastro),
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
     PRIMARY KEY (CPF)
 );
 
 CREATE TABLE IF NOT EXISTS Cliente_PJ (
-    Nome VARCHAR(255),
-    CNPJ VARCHAR(11),
+    Nome VARCHAR(255) NOT NULL,
+    CNPJ VARCHAR(11) NOT NULL,
     CodEndereco INT NOT NULL,
     FOREIGN KEY (CodEndereco) REFERENCES Endereco(CodEndereco),
     PRIMARY KEY (CNPJ)
