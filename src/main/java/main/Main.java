@@ -147,91 +147,95 @@ public class Main {
     }
 
     private static Cadastro getCadastro() {
-        Scanner scanCadastro = new Scanner(System.in);
 
-        System.out.println("Digite as informações");
-        System.out.print("Login: ");
-        String login = scanCadastro.next();
-
-        System.out.print("CPF: ");
-        String cpf = scanCadastro.next();
-
-        System.out.print("Email: ");
-        String email = scanCadastro.next();
-
-        System.out.print("Senha: ");
-        String senha = scanCadastro.next();
-
-        return new Cadastro(login, cpf, email, senha);
+        try (Scanner scanCadastro = new Scanner(System.in)) {
+            
+            System.out.println("Digite as informações");
+            System.out.print("Login: ");
+            String login = scanCadastro.next();
+    
+            System.out.print("CPF: ");
+            String cpf = scanCadastro.next();
+    
+            System.out.print("Email: ");
+            String email = scanCadastro.next();
+    
+            System.out.print("Senha: ");
+            String senha = scanCadastro.next();
+            return new Cadastro(login, cpf, email, senha);
+        }
     }
 
     private static Endereco getEndereco() {
-        Scanner scanEndereco = new Scanner(System.in);
-        System.out.println("Digite as informações");
-        System.out.print("Rua: ");
-        String Rua = scanEndereco.nextLine();
 
-        System.out.print("Número da Casa: ");
-        String numCasa = scanEndereco.nextLine();
-
-        System.out.print("Bairro: ");
-        String Bairro = scanEndereco.nextLine();
-
-        System.out.print("Cidade: ");
-        String Cidade = scanEndereco.nextLine();
-
-        // scanEndereco.close();
-        return new Endereco(Rua, numCasa, Bairro, Cidade);
+        try (Scanner scanEndereco = new Scanner(System.in)) {
+            System.out.println("Digite as informações");
+            System.out.print("Rua: ");
+            String Rua = scanEndereco.nextLine();
+    
+            System.out.print("Número da Casa: ");
+            String numCasa = scanEndereco.nextLine();
+    
+            System.out.print("Bairro: ");
+            String Bairro = scanEndereco.nextLine();
+    
+            System.out.print("Cidade: ");
+            String Cidade = scanEndereco.nextLine();
+    
+            return new Endereco(Rua, numCasa, Bairro, Cidade);
+        }
     }
 
     private static int getTempoAbertura() {
-        Scanner scanTempoAb = new Scanner(System.in);
-        int horaAbertura;
-        int minAbertura;
-        int abertura;
+        try (Scanner scanTempoAb = new Scanner(System.in)) {
+            int horaAbertura;
+            int minAbertura;
+            int abertura;
+    
+            do {
+                System.out.print(
+                        "\u001B[32mDigite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
+                horaAbertura = scanTempoAb.nextInt();
+            } while (horaAbertura < 0 || horaAbertura > 23);
+    
+            do {
+                System.out.print(
+                        "\u001B[32mDigite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
+                minAbertura = scanTempoAb.nextInt();
+            } while (minAbertura < 0 || minAbertura > 59);
+    
+            abertura = minAbertura + (horaAbertura * 60);
+    
+            return abertura;
+        }
 
-        do {
-            System.out.print(
-                    "\u001B[32mDigite a HORA de Abertura do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
-            horaAbertura = scanTempoAb.nextInt();
-        } while (horaAbertura < 0 || horaAbertura > 23);
-
-        do {
-            System.out.print(
-                    "\u001B[32mDigite os MINUTOS de Abertura do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
-            minAbertura = scanTempoAb.nextInt();
-        } while (minAbertura < 0 || minAbertura > 59);
-
-        abertura = minAbertura + (horaAbertura * 60);
-
-        return abertura;
     }
 
     private static int getTempoFechamento() {
-        Scanner scanTempoFec = new Scanner(System.in);
-        int horaFechamento;
-        int minFechamento;
-        int fechamento;
-
-        do {
-            System.out.print(
-                    "\u001B[31mDigite a HORA de Fechamento do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
-            horaFechamento = scanTempoFec.nextInt();
-        } while (horaFechamento < 0 || horaFechamento > 23);
-
-        do {
-            System.out.print(
-                    "\u001B[31mDigite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
-            minFechamento = scanTempoFec.nextInt();
-        } while (minFechamento < 0 || minFechamento > 59);
-
-        fechamento = minFechamento + (horaFechamento * 60);
-
-        return fechamento;
+        try (Scanner scanTempoFec = new Scanner(System.in)) {
+            int horaFechamento;
+            int minFechamento;
+            int fechamento;
+    
+            do {
+                System.out.print(
+                        "\u001B[31mDigite a HORA de Fechamento do seu estabelecimento\n(horários válidos são das 0 as 23)\n<NÃO DIGITE OS MINUTOS>\n> \u001B[0m");
+                horaFechamento = scanTempoFec.nextInt();
+            } while (horaFechamento < 0 || horaFechamento > 23);
+    
+            do {
+                System.out.print(
+                        "\u001B[31mDigite os MINUTOS de Fechamento do seu estabelecimento\n(horários válidos são de 0 a 59)\n<NÃO DIGITE AS HORAS>\n> \u001B[0m");
+                minFechamento = scanTempoFec.nextInt();
+            } while (minFechamento < 0 || minFechamento > 59);
+    
+            fechamento = minFechamento + (horaFechamento * 60);
+    
+            return fechamento;
+        }
     }
 
     private static HashMap<String, Integer> getMenu() {
-
         Scanner scanMenu = new Scanner(System.in);
         HashMap<String, Integer> menu = new HashMap<String, Integer>();
         System.out.println("Central do Menu");
@@ -277,6 +281,7 @@ public class Main {
             }
 
         }
+        scanMenu.close();
         return menu;
     }
 
@@ -294,22 +299,25 @@ public class Main {
     }
 
     private static Cliente login(String login, String senha, ArrayList<Cliente> clientes) {
-        Scanner scan = new Scanner(System.in);
-        Cliente outCliente = null;
+        try (Scanner scan = new Scanner(System.in)){
 
-        for (Cliente cliente : clientes) {
-            Cadastro cadastro = cliente.getCadastro();
-            if (cadastro.getLogin().equals(login)
-                    &&
-                    cadastro.getSenha().equals(senha)) {
-                System.out.println();
-                outCliente = cliente;
-                break;
-            } else {
-                continue;
+            Cliente outCliente = null;
+    
+            for (Cliente cliente : clientes) {
+                Cadastro cadastro = cliente.getCadastro();
+                if (cadastro.getLogin().equals(login)
+                        &&
+                        cadastro.getSenha().equals(senha)) {
+                    System.out.println();
+                    outCliente = cliente;
+                    break;
+                } else {
+                    continue;
+                }
             }
+            return outCliente;
+    
         }
-        return outCliente;
-
-    }
+        }
+        
 }
