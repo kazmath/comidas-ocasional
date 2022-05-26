@@ -94,41 +94,36 @@ public class Main {
                     Endereco enderecoUser = getEndereco();
 
                     stmt.execute(
-                        "INSERT INTO Endereco(Bairro, NumCasa, Cidade, Rua) VALUES (" +
-                            "'" + enderecoUser.getBairro() + "'" + ", " +
-                            "'" + enderecoUser.getNumCasa() + "'" + ", " +
-                            "'" + enderecoUser.getCidade() + "'" + ", " +
-                            "'" + enderecoUser.getRua() + "'" +
-                        ")"
-                    );
+                            "INSERT INTO Endereco(Bairro, NumCasa, Cidade, Rua) VALUES (" +
+                                    "'" + enderecoUser.getBairro() + "'" + ", " +
+                                    "'" + enderecoUser.getNumCasa() + "'" + ", " +
+                                    "'" + enderecoUser.getCidade() + "'" + ", " +
+                                    "'" + enderecoUser.getRua() + "'" +
+                                    ")");
                     ResultSet rsEndereco = stmt.executeQuery(
-                        "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1"
-                    );
+                            "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1");
                     rsEndereco.next();
                     int CodEnderecoCli = rsEndereco.getInt("CodEndereco");
 
                     stmt.execute(
-                        "INSERT INTO Cadastro(Login, Email, Senha) VALUES (" +
-                            "'" + cadastro.getLogin() + "'" + ", " +
-                            "'" + cadastro.getEmail() + "'" + ", " +
-                            "'" + cadastro.getSenha() + "'" +
-                        ")"
-                    );
+                            "INSERT INTO Cadastro(Login, Email, Senha) VALUES (" +
+                                    "'" + cadastro.getLogin() + "'" + ", " +
+                                    "'" + cadastro.getEmail() + "'" + ", " +
+                                    "'" + cadastro.getSenha() + "'" +
+                                    ")");
                     ResultSet rsCadastro = stmt.executeQuery(
-                        "SELECT * FROM Cadastro ORDER BY CodCadastro DESC LIMIT 1"
-                    );
+                            "SELECT * FROM Cadastro ORDER BY CodCadastro DESC LIMIT 1");
                     rsCadastro.next();
                     int codCadastroCli = rsCadastro.getInt("CodCadastro");
-                    
+
                     Cliente cliente = cadCliente(nome, cadastro, enderecoUser);
                     stmt.execute(
-                        "INSERT INTO Cliente_PF(Nome, CPF, CodEndereco, CodCadastro) VALUES (" +
-                            "'" + cliente.getNome() + "'" + ", " +
-                            "'" + cliente.getCadastro().getCpf() + "'" + ", " +
-                            CodEnderecoCli + ", " +
-                            codCadastroCli +
-                        ")"
-                    );
+                            "INSERT INTO Cliente_PF(Nome, CPF, CodEndereco, CodCadastro) VALUES (" +
+                                    "'" + cliente.getNome() + "'" + ", " +
+                                    "'" + cliente.getCadastro().getCpf() + "'" + ", " +
+                                    CodEnderecoCli + ", " +
+                                    codCadastroCli +
+                                    ")");
                     System.out.println("Cadastro realizado com sucesso!\n\n");
 
                     // clientes.add(cliente);
@@ -136,83 +131,75 @@ public class Main {
                     break;
                 case 3:
                     System.out.print("Insira o CNPJ da sua empresa: ");
-                    scan.next();
-                    String cnpjLogin = scan.nextLine();
+                    // scan.next();
+                    String cnpjLogin = scan.next();
                     if (loginEst(cnpjLogin)) {
                         codLoginEst = cnpjLogin;
+                        System.out.println(codLoginEst);
                         controlador = false;
                     }
 
                     System.out.println(
-                        controlador == false
-                                ? "Login realizado com sucesso!\n"
-                                : "ERRO: Credenciais não registradas. Cadastre-se primeiro.\n"
-                    );
+                            controlador == false
+                                    ? "Login realizado com sucesso!\n"
+                                    : "ERRO: Credenciais não registradas. Cadastre-se primeiro.\n");
                     break;
                 case 4:
                     System.out.println("Insira o nome do estabelecimento: ");
                     scan.nextLine();
                     String nomeEst = scan.nextLine();
-            
+
                     System.out.println("Insira o cnpj: ");
                     String cnpj = scan.nextLine();
-  
+
                     System.out.println("Insira seu endereço: ");
                     Endereco enderecoComp = getEndereco();
                     HashMap<String, Integer> menu = getMenu();
 
                     Estabelecimento estabelecimento = cadEstabelecimento(
-                        nomeEst,
-                        cnpj,
-                        false,
-                        menu,
-                        enderecoComp
-                    );
-                    
+                            nomeEst,
+                            cnpj,
+                            false,
+                            menu,
+                            enderecoComp);
+
                     // estabelecimentos.add(estabelecimento);
                     stmt.execute(
-                        "INSERT INTO Endereco(Bairro, NumCasa, Cidade, Rua) VALUES (" +
-                            "'" + enderecoComp.getBairro() + "'" + ", " +
-                            "'" + enderecoComp.getNumCasa() + "'" + ", " +
-                            "'" + enderecoComp.getCidade() + "'" + ", " +
-                            "'" + enderecoComp.getRua() + "'" +
-                        ")"
-                    );
+                            "INSERT INTO Endereco(Bairro, NumCasa, Cidade, Rua) VALUES (" +
+                                    "'" + enderecoComp.getBairro() + "'" + ", " +
+                                    "'" + enderecoComp.getNumCasa() + "'" + ", " +
+                                    "'" + enderecoComp.getCidade() + "'" + ", " +
+                                    "'" + enderecoComp.getRua() + "'" +
+                                    ")");
                     ResultSet RsEnderecoEst = stmt.executeQuery(
-                        "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1"
-                    );
+                            "SELECT * FROM Endereco ORDER BY CodEndereco DESC LIMIT 1");
                     RsEnderecoEst.next();
                     stmt.execute(
-                        "INSERT INTO Estabelecimento(Nome,CNPJ,Aberto,CodEndereco) VALUES (" +
-                            "'" + estabelecimento.getNome() + "'" + ", " +
-                            "'" + estabelecimento.getCnpj() + "'" + ", " +
-                            (estabelecimento.getAberto() ? 1 : 0) + ", " +
-                            RsEnderecoEst.getString("CodEndereco") +
-                        ")"
-                    );
+                            "INSERT INTO Estabelecimento(Nome,CNPJ,Aberto,CodEndereco) VALUES (" +
+                                    "'" + estabelecimento.getNome() + "'" + ", " +
+                                    "'" + estabelecimento.getCnpj() + "'" + ", " +
+                                    (estabelecimento.getAberto() ? 1 : 0) + ", " +
+                                    RsEnderecoEst.getString("CodEndereco") +
+                                    ")");
                     ResultSet rsEstabelecimento = stmt.executeQuery(
-                        "SELECT * FROM Estabelecimento ORDER BY CodEstabelecimento DESC LIMIT 1"
-                    );
+                            "SELECT * FROM Estabelecimento ORDER BY CodEstabelecimento DESC LIMIT 1");
                     rsEstabelecimento.next();
                     int CodEstabelecimento = rsEstabelecimento.getInt("CodEstabelecimento");
-                    
+
                     for (String nomePrato : menu.keySet()) {
                         stmt.execute(
-                            "INSERT INTO Prato(Nome, Preco) VALUES (" +
-                                "'" + nomePrato + "'" + ", " +
-                                menu.get(nomePrato) +
-                            ")"
-                        );
+                                "INSERT INTO Prato(Nome, Preco) VALUES (" +
+                                        "'" + nomePrato + "'" + ", " +
+                                        menu.get(nomePrato) +
+                                        ")");
                         ResultSet RsPrato = stmt.executeQuery(
-                            "SELECT * FROM Prato ORDER BY Id DESC LIMIT 1"
-                        );
+                                "SELECT * FROM Prato ORDER BY Id DESC LIMIT 1");
                         RsPrato.next();
                         stmt.execute(
-                            "INSERT INTO Cardapio(fk_Estabelecimento_Cod, Prato_Id) VALUES (" +
-                                CodEstabelecimento + ", " +
-                                RsPrato.getString("Id") + 
-                            ")"
-                        );
+                                "INSERT INTO Cardapio(fk_Estabelecimento_Cod, Prato_Id) VALUES (" +
+                                        CodEstabelecimento + ", " +
+                                        RsPrato.getString("Id") +
+                                        ")");
                     }
 
                     break;
@@ -226,24 +213,19 @@ public class Main {
         }
 
         if (codLogin != null) {
-            HashMap<String,String> estHashMap = new HashMap<String,String>();
+            HashMap<String, String> estHashMap = new HashMap<String, String>();
 
             try (
-                ResultSet rs = stmt.executeQuery(
-                    "SELECT CodEstabelecimento,Nome FROM Estabelecimento " +
-                    "WHERE Aberto=1"
-                );
-            ) {
+                    ResultSet rs = stmt.executeQuery(
+                            "SELECT CodEstabelecimento,Nome FROM Estabelecimento " +
+                                    "WHERE Aberto=1");) {
                 System.out.println("Selecione o estabelecimento:");
                 while (rs.next()) {
                     estHashMap.put(
-                        rs.getString("CodEstabelecimento"),
-                        rs.getString("Nome")
-                    );
-                }                    
+                            rs.getString("CodEstabelecimento"),
+                            rs.getString("Nome"));
+                }
             }
-            
-            
 
             while (true) {
                 for (String est : estHashMap.keySet()) {
@@ -255,118 +237,141 @@ public class Main {
                 String CodEstabelecimento;
 
                 try (
-                    ResultSet rs = stmt.executeQuery(
-                        "SELECT * FROM Estabelecimento " +
-                        "WHERE CodEstabelecimento=" + selection
-                    );
-                ) {
+                        ResultSet rs = stmt.executeQuery(
+                                "SELECT * FROM Estabelecimento " +
+                                        "WHERE CodEstabelecimento=" + selection);) {
                     rs.next();
                     CodEstabelecimento = rs.getString("CodEstabelecimento");
                 } catch (SQLException e) {
                     e.printStackTrace();
                     continue;
                 }
-                
+
                 ResultSet rsCardapio = stmt.executeQuery(
-                    "SELECT p.Id,p.Nome,p.Preco FROM Cardapio AS c, Prato AS p, Estabelecimento as e " +
-                    "WHERE c.Prato_Id=p.Id AND " +
-                    "c.fk_Estabelecimento_Cod=e.CodEstabelecimento AND " +
-                    "e.CodEstabelecimento=" + CodEstabelecimento
-                );    
+                        "SELECT p.Id,p.Nome,p.Preco FROM Cardapio AS c, Prato AS p, Estabelecimento as e " +
+                                "WHERE c.Prato_Id=p.Id AND " +
+                                "c.fk_Estabelecimento_Cod=e.CodEstabelecimento AND " +
+                                "e.CodEstabelecimento=" + CodEstabelecimento);
                 System.out.println("\nFaça seu pedido:");
                 boolean concluido = true;
-                
 
-                HashMap<Integer,String[]> cardHashMap = new HashMap<Integer,String[]>();
+                HashMap<Integer, String[]> cardHashMap = new HashMap<Integer, String[]>();
                 while (rsCardapio.next()) {
                     String prato[] = {
-                        rsCardapio.getString("Nome"),
-                        String.valueOf(rsCardapio.getInt("Preco"))
+                            rsCardapio.getString("Nome"),
+                            String.valueOf(rsCardapio.getInt("Preco"))
                     };
                     cardHashMap.put(rsCardapio.getInt("Id"), prato);
                 }
                 pedido: while (true) {
                     for (Integer entry : cardHashMap.keySet()) {
                         System.out.println(
-                            "(" + String.valueOf(entry) + ")" +
-                            " " + cardHashMap.get(entry)[0] +
-                            ": R$" + (Float.parseFloat(cardHashMap.get(entry)[1]) / 100)
-                        );
+                                "(" + String.valueOf(entry) + ")" +
+                                        " " + cardHashMap.get(entry)[0] +
+                                        ": R$" + (Float.parseFloat(cardHashMap.get(entry)[1]) / 100));
                     }
                     System.out.print("Digite o código do prato (\"cancel\" para cancelar): ");
                     String pedidoId = scan.next();
                     System.out.println();
-                    if ( pedidoId.toLowerCase().equals("cancel") ){
+                    if (pedidoId.toLowerCase().equals("cancel")) {
                         System.out.println();
 
                         {
                             System.out.println("Seu pedido foi:");
                             ResultSet rs = stmt.executeQuery(
-                                "SELECT p.Preco,p.Nome,c.Quantidade_Item " +
-                                "FROM Prato p, Carrinho_Aplicativo c " +
-                                "WHERE p.Id=c.Prato_Id"
-                            );
+                                    "SELECT p.Preco,p.Nome,c.Quantidade_Item " +
+                                            "FROM Prato p, Carrinho_Aplicativo c " +
+                                            "WHERE p.Id=c.Prato_Id");
                             while (rs.next()) {
                                 System.out.println(
-                                    "+ " +
-                                    "R$" + String.valueOf(
-                                        (rs.getFloat("Preco") / 100) * rs.getInt("Quantidade_Item")
-                                    ) + ": " +
-                                    rs.getString("Nome") +
-                                    " X" + String.valueOf(rs.getInt("Quantidade_Item"))
-                                );
+                                        "+ " +
+                                                "R$" + String.valueOf(
+                                                        (rs.getFloat("Preco") / 100) * rs.getInt("Quantidade_Item"))
+                                                + ": " +
+                                                rs.getString("Nome") +
+                                                " X" + String.valueOf(rs.getInt("Quantidade_Item")));
                             }
                             ResultSet rsSum = stmt.executeQuery(
-                                "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
-                                "FROM Prato p, Carrinho_Aplicativo c " +
-                                "WHERE p.Id=c.Prato_Id"
-                            );
+                                    "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
+                                            "FROM Prato p, Carrinho_Aplicativo c " +
+                                            "WHERE p.Id=c.Prato_Id");
                             rsSum.next();
-                            System.out.println("= R$" + ( (float) rsSum.getInt("SUM") / 100 ));
+                            System.out.println("= R$" + ((float) rsSum.getInt("SUM") / 100));
                             System.out.print("Confirmar [S/n]? ");
                             boolean continuar = scan.next().toLowerCase().equals("n");
-                            if (continuar) continue;
+                            if (continuar)
+                                continue;
                         }
 
                         break pedido;
                     } else {
                         System.out.print("Digite a quantidade: ");
-                        Integer pedidoQuant = scan.nextInt();    
+                        Integer pedidoQuant = scan.nextInt();
                         stmt.execute(
-                            "INSERT INTO Carrinho_Aplicativo(" +
-                                "Prato_Id," +
-                                "Quantidade_Item" +
-                            ") VALUES (" +
-                                pedidoId + ", " +
-                                String.valueOf(pedidoQuant) +
-                            ")"
-                        );
+                                "INSERT INTO Carrinho_Aplicativo(" +
+                                        "Prato_Id," +
+                                        "Quantidade_Item" +
+                                        ") VALUES (" +
+                                        pedidoId + ", " +
+                                        String.valueOf(pedidoQuant) +
+                                        ")");
 
                     }
                 }
                 int precoTotal = 0;
                 try (
-                    ResultSet rs = stmt.executeQuery(
-                        "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
-                        "FROM Prato p, Carrinho_Aplicativo c " +
-                        "WHERE p.Id=c.Prato_Id"
-                    );
-                ) {
+                        ResultSet rs = stmt.executeQuery(
+                                "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
+                                        "FROM Prato p, Carrinho_Aplicativo c " +
+                                        "WHERE p.Id=c.Prato_Id");) {
                     rs.next();
                     precoTotal = rs.getInt("SUM");
                 } finally {
                     stmt.execute(
-                        "DELETE FROM Carrinho_Aplicativo"
-                    );
+                            "DELETE FROM Carrinho_Aplicativo");
                 }
                 System.out.println("\nPreço Total: R$" + String.valueOf((float) precoTotal / 100));
                 break;
             }
         } else if (codLoginEst != null) {
             // TODO: Rota "Login como Estabelecimento"
-        }
+            System.out.println("""
+                Digite oque você quer fazer
 
+                1 - Abrir/Fechar o Estabelecimento
+                """);
+            int escolhaEst = scan.nextInt();
+            switch (escolhaEst) {
+                case 1:
+                    System.out.print("Você deseja mudar o status do seu restaurante?\n[S/n]> ");
+                    String sn = scan.next().toLowerCase();
+                    if (sn.equals("n")) {
+                        break;
+                    } else {
+                        ResultSet cleiton = stmt.executeQuery(
+                                "SELECT Aberto FROM Estabelecimento WHERE CNPJ='" + codLoginEst + "'");
+                        cleiton.next();
+                        int cleitoncheck = cleiton.getInt("Aberto");
+
+                        ResultSet rsCodEst = stmt
+                                .executeQuery("SELECT * FROM estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
+                        rsCodEst.next();
+                        String rasta = rsCodEst.getString("CodEstabelecimento");
+
+                        if (cleitoncheck == 1) {;
+                            stmt.execute("UPDATE Estabelecimento SET Aberto=0 WHERE CodEstabelecimento='" + rasta + "'");
+                            System.out.println("Seu Restaurante agora está fechado");
+                        } else {
+                            stmt.execute(
+                                    "UPDATE Estabelecimento SET Aberto=1 WHERE CodEstabelecimento='" + rasta + "'");
+                                    System.out.println("Seu Restaurante agora está aberto");
+                                }
+                    }
+                
+            }
+        }
     }
+    
 
     private static Cliente cadCliente(String nome, Cadastro cadastro, Endereco enderecoUser) {
         Cliente cliente = new Cliente(nome, cadastro);
