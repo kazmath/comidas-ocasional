@@ -334,31 +334,30 @@ public class Main {
                 break;
             }
         } else if (codLoginEst != null) {
-            // TODO: Rota "Login como Estabelecimento"
             System.out.println("""
                 Digite oque você quer fazer
 
                 1 - Abrir/Fechar o Estabelecimento
+                2 - Adicionar Prato
                 """);
             int escolhaEst = scan.nextInt();
             switch (escolhaEst) {
                 case 1:
                     System.out.print("Você deseja mudar o status do seu restaurante?\n[S/n]> ");
-                    String sn = scan.next().toLowerCase();
-                    if (sn.equals("n")) {
+                    if (scan.next().toLowerCase().equals("n")) {
                         break;
                     } else {
-                        ResultSet cleiton = stmt.executeQuery(
+                        ResultSet estAberto = stmt.executeQuery(
                                 "SELECT Aberto FROM Estabelecimento WHERE CNPJ='" + codLoginEst + "'");
-                        cleiton.next();
-                        int cleitoncheck = cleiton.getInt("Aberto");
+                        estAberto.next();
+                        int estAbertoCheck = estAberto.getInt("Aberto");
 
                         ResultSet rsCodEst = stmt
                                 .executeQuery("SELECT * FROM estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
                         rsCodEst.next();
                         String rasta = rsCodEst.getString("CodEstabelecimento");
 
-                        if (cleitoncheck == 1) {;
+                        if (estAbertoCheck == 1) {;
                             stmt.execute("UPDATE Estabelecimento SET Aberto=0 WHERE CodEstabelecimento='" + rasta + "'");
                             System.out.println("Seu Restaurante agora está fechado");
                         } else {
@@ -367,6 +366,49 @@ public class Main {
                                     System.out.println("Seu Restaurante agora está aberto");
                                 }
                     }
+                    break;
+                case 2:
+                    System.out.print("Você deseja adicionar um prato?\n[S/n]> ");
+                    if (scan.next().toLowerCase().equals("n")) {
+                        break;
+                    } else {
+                        ResultSet rsCodEst = stmt
+                                .executeQuery("SELECT * FROM estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
+                        rsCodEst.next();
+                        String codEst = rsCodEst.getString("CodEstabelecimento");
+
+                        System.out.print("Prato: ");
+                        String pratoNew = scan.next();
+                        System.out.print("Prato: ");
+                        String precoNew = scan.next();
+
+                        stmt.execute(
+                            "INSERT INTO Prato(Nome,Preco) VALUES (" +
+                                "'" + pratoNew + "'" +
+                                "'" + precoNew + "'" +
+                            ")"
+                        );
+                        stmt.execute(
+                            "INSERT INTO Prato(Nome,Preco) VALUES (" +
+                                "'" + pratoNew + "'" +
+                                "'" + precoNew + "'" +
+                            ")"
+                        );
+                        ResultSet rsPratoNew = stmt.executeQuery(
+                            "SELECT Id FROM Prato ORDER BY Id LIMIT 1"
+                        );
+                        rsPratoNew.next();
+                        int idNew = rsPratoNew.getInt("Id");
+
+                        stmt.execute(
+                            "INSERT INTO Cardapio(fk_Estabelecimento_Cod,Prato_Id) VALUES (" +
+                                String.valueOf(idNew) + ", " +
+                                codEst +
+                            ")"
+                        );
+                    }
+
+                
                 
             }
         }
