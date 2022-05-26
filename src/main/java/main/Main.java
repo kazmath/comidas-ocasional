@@ -281,28 +281,89 @@ public class Main {
                 while (rsCardapio.next()) {
                     String prato[] = {
                         rsCardapio.getString("Nome"),
-                        String.valueOf(rsCardapio.getInt("Preco") / 100)
+                        String.valueOf(rsCardapio.getInt("Preco"))
                     };
                     cardHashMap.put(rsCardapio.getInt("Id"), prato);
                 }
-                while (concluido) {
+                pedido: while (true) {
                     for (Integer entry : cardHashMap.keySet()) {
                         System.out.println(
                             "(" + String.valueOf(entry) + ")" +
                             " " + cardHashMap.get(entry)[0] +
-                            ": R$" + cardHashMap.get(entry)[1]
+                            ": R$" + (Float.parseFloat(cardHashMap.get(entry)[1]) / 100)
                         );
                     }
-                    System.out.print("Digite o código do prato: ");
-                    String addPedido = scan.next();
+                    System.out.print("Digite o código do prato (\"cancel\" para cancelar): ");
+                    String pedidoId = scan.next();
                     System.out.println();
-                    // TODO: Continuar
-                }
+                    if ( pedidoId.toLowerCase().equals("cancel") ){
+                        System.out.println();
 
-                
+                        {
+                            System.out.println("Seu pedido foi:");
+                            ResultSet rs = stmt.executeQuery(
+                                "SELECT p.Preco,p.Nome,c.Quantidade_Item " +
+                                "FROM Prato p, Carrinho_Aplicativo c " +
+                                "WHERE p.Id=c.Prato_Id"
+                            );
+                            while (rs.next()) {
+                                System.out.println(
+                                    "+ " +
+                                    "R$" + String.valueOf(
+                                        (rs.getFloat("Preco") / 100) * rs.getInt("Quantidade_Item")
+                                    ) + ": " +
+                                    rs.getString("Nome") +
+                                    " X" + String.valueOf(rs.getInt("Quantidade_Item"))
+                                );
+                            }
+                            ResultSet rsSum = stmt.executeQuery(
+                                "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
+                                "FROM Prato p, Carrinho_Aplicativo c " +
+                                "WHERE p.Id=c.Prato_Id"
+                            );
+                            rsSum.next();
+                            System.out.println("= R$" + ( (float) rsSum.getInt("SUM") / 100 ));
+                            System.out.print("Confirmar [S/n]? ");
+                            boolean continuar = scan.next().toLowerCase().equals("n");
+                            if (continuar) continue;
+                        }
+
+                        break pedido;
+                    } else {
+                        System.out.print("Digite a quantidade: ");
+                        Integer pedidoQuant = scan.nextInt();    
+                        stmt.execute(
+                            "INSERT INTO Carrinho_Aplicativo(" +
+                                "Prato_Id," +
+                                "Quantidade_Item" +
+                            ") VALUES (" +
+                                pedidoId + ", " +
+                                String.valueOf(pedidoQuant) +
+                            ")"
+                        );
+
+                    }
+                }
+                int precoTotal = 0;
+                try (
+                    ResultSet rs = stmt.executeQuery(
+                        "SELECT SUM(p.Preco*c.Quantidade_Item) as SUM " +
+                        "FROM Prato p, Carrinho_Aplicativo c " +
+                        "WHERE p.Id=c.Prato_Id"
+                    );
+                ) {
+                    rs.next();
+                    precoTotal = rs.getInt("SUM");
+                } finally {
+                    stmt.execute(
+                        "DELETE FROM Carrinho_Aplicativo"
+                    );
+                }
+                System.out.println("\nPreço Total: R$" + String.valueOf((float) precoTotal / 100));
+                break;
             }
         } else if (codLoginEst != null) {
-
+            // TODO: Rota "Login como Estabelecimento"
         }
 
     }
