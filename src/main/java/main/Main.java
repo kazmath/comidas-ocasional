@@ -353,7 +353,7 @@ public class Main {
                         int estAbertoCheck = estAberto.getInt("Aberto");
 
                         ResultSet rsCodEst = stmt
-                                .executeQuery("SELECT * FROM estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
+                                .executeQuery("SELECT * FROM Estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
                         rsCodEst.next();
                         String rasta = rsCodEst.getString("CodEstabelecimento");
 
@@ -373,7 +373,7 @@ public class Main {
                         break;
                     } else {
                         ResultSet rsCodEst = stmt
-                                .executeQuery("SELECT * FROM estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
+                                .executeQuery("SELECT * FROM Estabelecimento WHERE `CNPJ` = '" + codLoginEst + "'");
                         rsCodEst.next();
                         String codEst = rsCodEst.getString("CodEstabelecimento");
 
